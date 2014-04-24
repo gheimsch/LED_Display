@@ -1,12 +1,11 @@
-#ifndef MATRIX_CLASS_HPP_
-#define MATRIX_CLASS_HPP_
-
-# ifdef __cplusplus
-
 /******************************************************************************/
-/*! \file MatrixClass.hpp
+/*! \file ShapeClass.cpp
 ******************************************************************************
 * \brief Short description of the files function
+*
+* Function : More detailed description of the files function
+*
+* Procedures :
 *
 * \author meert1,heimg1
 *
@@ -20,35 +19,31 @@
 /* ****************************************************************************/
 
 /* --------------------------------- imports ---------------------------------*/
-#include "LEDArrayClass.hpp"
-#include "PrinterClass.hpp"
-/* ----------------------- module constant declaration -----------------------*/
-
-/* ------------------------- module type declaration -------------------------*/
-
+#include "ShapeClass.hpp"
+#include <iostream>
+#include "MatrixClass.hpp"
 /* ------------------------- module data declaration -------------------------*/
 
 /* ----------------------- module procedure declaration ----------------------*/
+//ShapeClass::ShapeClass(MatrixClass *NewMatrix) : Matrix(NewMatrix), Position(){
+//
+//	std::cout << "LineClass created" << std::endl;
+//}
 
-class MatrixClass {
+ShapeClass::ShapeClass(PositionClass P) : Matrix(NewMatrix), Position(){
 
-	friend class ShapeClass;
-	//friend class LEDArrayClass;
-   // Data
-	int Height;
-	int Width;
-	//Colortable
+	std::cout << "LineClass created" << std::endl;
+}
 
-   // Methods
-public:
-	//MatrixClass();
-	LEDArrayClass Array;
-	MatrixClass(int newHeight, int newWidth);
-	~MatrixClass();
+ShapeClass::~ShapeClass(){
 
-};
+	std::cout << "LineClass destroyed" << std::endl;
+}
+
+void ShapeClass::Draw(){
+
+	std::cout << "LineClass destroyed" << std::endl;
+}
 /* ****************************************************************************/
-/* End Header : MatrixClass.hpp */
+/* End Header : ShapeClass.cpp */
 /* ****************************************************************************/
-# endif
-#endif /* MATRIX_CLASS_HPP_ */

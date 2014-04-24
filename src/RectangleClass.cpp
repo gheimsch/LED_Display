@@ -1,14 +1,11 @@
-#ifndef TIMERISR_H_
-#define TIMERISR_H_
-
-# ifdef __cplusplus
-extern "C" {
-# endif
-
 /******************************************************************************/
-/*! \file TimerISR.h
+/*! \file RectangleClass.cpp
 ******************************************************************************
 * \brief Short description of the files function
+*
+* Function : More detailed description of the files function
+*
+* Procedures :
 *
 * \author meert1,heimg1
 *
@@ -22,22 +19,21 @@ extern "C" {
 /* ****************************************************************************/
 
 /* --------------------------------- imports ---------------------------------*/
-
-/* ----------------------- module constant declaration -----------------------*/
-
-/* ------------------------- module type declaration -------------------------*/
-
+#include "RectangleClass.hpp"
+#include <iostream>
 /* ------------------------- module data declaration -------------------------*/
 
 /* ----------------------- module procedure declaration ----------------------*/
+RectangleClass::RectangleClass(MatrixClass *newMatrix, int newX, int newY, int newWidth, int newHeight) : ShapeClass(newMatrix), X(newX), Y(newX), Width(newWidth), Height(newHeight){
 
-extern void initISR(int,int,uint16_t *);
-extern "C" void TIM2_IRQHandler(void);
-
-/* ****************************************************************************/
-/* End Header : TimerISR.h */
-/* ****************************************************************************/
-# ifdef __cplusplus
+	std::cout << "LineClass created" << std::endl;
 }
-# endif
-#endif /* TIMERISR_H_ */
+
+
+RectangleClass::~RectangleClass(){
+
+	std::cout << "LineClass destroyed" << std::endl;
+}
+/* ****************************************************************************/
+/* End Header : RectangleClass.cpp */
+/* ****************************************************************************/

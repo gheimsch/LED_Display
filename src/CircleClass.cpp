@@ -1,14 +1,11 @@
-#ifndef TIMERISR_H_
-#define TIMERISR_H_
-
-# ifdef __cplusplus
-extern "C" {
-# endif
-
 /******************************************************************************/
-/*! \file TimerISR.h
+/*! \file CircleClass.cpp
 ******************************************************************************
 * \brief Short description of the files function
+*
+* Function : More detailed description of the files function
+*
+* Procedures :
 *
 * \author meert1,heimg1
 *
@@ -22,22 +19,21 @@ extern "C" {
 /* ****************************************************************************/
 
 /* --------------------------------- imports ---------------------------------*/
-
-/* ----------------------- module constant declaration -----------------------*/
-
-/* ------------------------- module type declaration -------------------------*/
-
+#include "CircleClass.hpp"
+#include <iostream>
 /* ------------------------- module data declaration -------------------------*/
 
 /* ----------------------- module procedure declaration ----------------------*/
+CircleClass::CircleClass(MatrixClass *newMatrix, int newX, int newY, int newRad) : ShapeClass(newMatrix),X(newX),Y(newX), Rad(newRad){
 
-extern void initISR(int,int,uint16_t *);
-extern "C" void TIM2_IRQHandler(void);
-
-/* ****************************************************************************/
-/* End Header : TimerISR.h */
-/* ****************************************************************************/
-# ifdef __cplusplus
+	std::cout << "LineClass created" << std::endl;
 }
-# endif
-#endif /* TIMERISR_H_ */
+
+
+CircleClass::~CircleClass(){
+
+	std::cout << "LineClass destroyed" << std::endl;
+}
+/* ****************************************************************************/
+/* End Header : CircleClass.cpp */
+/* ****************************************************************************/

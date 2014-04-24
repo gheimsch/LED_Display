@@ -1,12 +1,10 @@
-#ifndef TIMERISR_H_
-#define TIMERISR_H_
+#ifndef RECTANGLE_CLASS_HPP_
+#define RECTANGLE_CLASS_HPP_
 
 # ifdef __cplusplus
-extern "C" {
-# endif
 
 /******************************************************************************/
-/*! \file TimerISR.h
+/*! \file RectangleClass.hpp
 ******************************************************************************
 * \brief Short description of the files function
 *
@@ -22,7 +20,7 @@ extern "C" {
 /* ****************************************************************************/
 
 /* --------------------------------- imports ---------------------------------*/
-
+#include "ShapeClass.hpp"
 /* ----------------------- module constant declaration -----------------------*/
 
 /* ------------------------- module type declaration -------------------------*/
@@ -31,13 +29,23 @@ extern "C" {
 
 /* ----------------------- module procedure declaration ----------------------*/
 
-extern void initISR(int,int,uint16_t *);
-extern "C" void TIM2_IRQHandler(void);
+class RectangleClass : public ShapeClass {
 
+   // Data
+	int X;
+	int Y;
+	int Width;
+	int Height;
+
+   // Methods
+public:
+	RectangleClass();
+	RectangleClass(MatrixClass *newMatrix, int newX, int newY, int newWidth, int newHeight);
+	~RectangleClass();
+
+};
 /* ****************************************************************************/
-/* End Header : TimerISR.h */
+/* End Header : RectangleClass.hpp */
 /* ****************************************************************************/
-# ifdef __cplusplus
-}
 # endif
-#endif /* TIMERISR_H_ */
+#endif /* RECTANGLE_CLASS_HPP_ */

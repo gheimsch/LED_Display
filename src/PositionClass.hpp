@@ -1,12 +1,10 @@
-#ifndef TIMERISR_H_
-#define TIMERISR_H_
+#ifndef POSITION_CLASS_HPP_
+#define POSITION_CLASS_HPP_
 
 # ifdef __cplusplus
-extern "C" {
-# endif
 
 /******************************************************************************/
-/*! \file TimerISR.h
+/*! \file PositionClass.hpp
 ******************************************************************************
 * \brief Short description of the files function
 *
@@ -22,7 +20,7 @@ extern "C" {
 /* ****************************************************************************/
 
 /* --------------------------------- imports ---------------------------------*/
-
+#include "ShapeClass.hpp"
 /* ----------------------- module constant declaration -----------------------*/
 
 /* ------------------------- module type declaration -------------------------*/
@@ -31,13 +29,30 @@ extern "C" {
 
 /* ----------------------- module procedure declaration ----------------------*/
 
-extern void initISR(int,int,uint16_t *);
-extern "C" void TIM2_IRQHandler(void);
+class PositionClass {
 
+private:
+	ShapeClass Shape;
+   // Data
+	int X;
+	int Y;
+
+
+
+   // Methods
+public:
+	//PositionClass();
+	PositionClass(ShapeClass newShape, int newX, int newY);
+	~PositionClass();
+
+	void SetX(int newX) {X = newX;};
+	void SetY(int newY) {Y = newY;};
+	int	GetX() {return(X);};
+	int	GetY() {return(Y);};
+
+};
 /* ****************************************************************************/
-/* End Header : TimerISR.h */
+/* End Header : PositionClass.hpp */
 /* ****************************************************************************/
-# ifdef __cplusplus
-}
 # endif
-#endif /* TIMERISR_H_ */
+#endif /* POSITION_CLASS_HPP_ */

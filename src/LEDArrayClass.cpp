@@ -1,12 +1,11 @@
-#ifndef MATRIX_CLASS_HPP_
-#define MATRIX_CLASS_HPP_
-
-# ifdef __cplusplus
-
 /******************************************************************************/
-/*! \file MatrixClass.hpp
+/*! \file LEDArrayClass.cpp
 ******************************************************************************
 * \brief Short description of the files function
+*
+* Function : More detailed description of the files function
+*
+* Procedures :
 *
 * \author meert1,heimg1
 *
@@ -20,35 +19,39 @@
 /* ****************************************************************************/
 
 /* --------------------------------- imports ---------------------------------*/
+#include "MatrixClass.hpp"
 #include "LEDArrayClass.hpp"
-#include "PrinterClass.hpp"
-/* ----------------------- module constant declaration -----------------------*/
-
-/* ------------------------- module type declaration -------------------------*/
+#include <iostream>
+#include <string.h>
 
 /* ------------------------- module data declaration -------------------------*/
-
+uint16_t ctr = 0;
 /* ----------------------- module procedure declaration ----------------------*/
+LEDArrayClass::LEDArrayClass(int newWidth, int newHeight) : Width(newWidth), Height(newHeight){
 
-class MatrixClass {
+	ledArray = new uint16_t[(32*Width)*(32*Height)];
+	memset(ledArray,0x00,(32*Width)*(32*Height)*2);
 
-	friend class ShapeClass;
-	//friend class LEDArrayClass;
-   // Data
-	int Height;
-	int Width;
-	//Colortable
+	std::cout << "LineClass created" << std::endl;
+}
 
-   // Methods
-public:
-	//MatrixClass();
-	LEDArrayClass Array;
-	MatrixClass(int newHeight, int newWidth);
-	~MatrixClass();
+LEDArrayClass::LEDArrayClass(){
 
-};
+	std::cout << "LineClass created" << std::endl;
+}
+
+LEDArrayClass::~LEDArrayClass(){
+
+	std::cout << "LineClass destroyed" << std::endl;
+}
+
+void LEDArrayClass::setPixel(int x,int y,uint16_t col){
+	ledArray[x+(32*1)*y] = col;
+}
+
+uint16_t * LEDArrayClass::getPtr(void){
+	return ledArray;
+}
 /* ****************************************************************************/
-/* End Header : MatrixClass.hpp */
+/* End Header : LEDArrayClass.cpp */
 /* ****************************************************************************/
-# endif
-#endif /* MATRIX_CLASS_HPP_ */

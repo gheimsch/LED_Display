@@ -1,12 +1,10 @@
-#ifndef TIMERISR_H_
-#define TIMERISR_H_
+#ifndef LED_ARRAY_HPP_
+#define LED_ARRAY_HPP_
 
 # ifdef __cplusplus
-extern "C" {
-# endif
 
 /******************************************************************************/
-/*! \file TimerISR.h
+/*! \file LEDArray.hpp
 ******************************************************************************
 * \brief Short description of the files function
 *
@@ -22,7 +20,7 @@ extern "C" {
 /* ****************************************************************************/
 
 /* --------------------------------- imports ---------------------------------*/
-
+#include <stdint.h>
 /* ----------------------- module constant declaration -----------------------*/
 
 /* ------------------------- module type declaration -------------------------*/
@@ -31,13 +29,26 @@ extern "C" {
 
 /* ----------------------- module procedure declaration ----------------------*/
 
-extern void initISR(int,int,uint16_t *);
-extern "C" void TIM2_IRQHandler(void);
+class LEDArrayClass {
 
+   // Data
+	friend class MatrixClass;
+	int Width;
+	int Height;
+	uint16_t *ledArray;
+
+   // Methods
+public:
+	LEDArrayClass();
+	LEDArrayClass(int newWidth, int newHeight);
+	~LEDArrayClass();
+
+	void setPixel(int x,int y, uint16_t col);
+	uint16_t * getPtr(void);
+
+};
 /* ****************************************************************************/
-/* End Header : TimerISR.h */
+/* End Header : LEDArrayClass.hpp */
 /* ****************************************************************************/
-# ifdef __cplusplus
-}
 # endif
-#endif /* TIMERISR_H_ */
+#endif /* LED_ARRAY_HPP_ */

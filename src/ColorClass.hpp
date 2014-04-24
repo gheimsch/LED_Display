@@ -1,12 +1,10 @@
-#ifndef TIMERISR_H_
-#define TIMERISR_H_
+#ifndef COLOR_CLASS_HPP_
+#define COLOR_CLASS_HPP_
 
 # ifdef __cplusplus
-extern "C" {
-# endif
 
 /******************************************************************************/
-/*! \file TimerISR.h
+/*! \file ColorClass.hpp
 ******************************************************************************
 * \brief Short description of the files function
 *
@@ -22,7 +20,7 @@ extern "C" {
 /* ****************************************************************************/
 
 /* --------------------------------- imports ---------------------------------*/
-
+#include <stdint.h>
 /* ----------------------- module constant declaration -----------------------*/
 
 /* ------------------------- module type declaration -------------------------*/
@@ -31,13 +29,24 @@ extern "C" {
 
 /* ----------------------- module procedure declaration ----------------------*/
 
-extern void initISR(int,int,uint16_t *);
-extern "C" void TIM2_IRQHandler(void);
+class ColorClass {
 
+   // Data
+	unsigned char Red;
+	unsigned char Green;
+	unsigned char Blue;
+
+   // Methods
+public:
+	ColorClass();
+	ColorClass(unsigned char newRed, unsigned char newGreen, unsigned char newBlue);
+	~ColorClass();
+
+	void setColor(uint16_t red, uint16_t green, uint16_t blue);
+	uint16_t getColor(void);
+};
 /* ****************************************************************************/
-/* End Header : TimerISR.h */
+/* End Header : ColorClass.hpp */
 /* ****************************************************************************/
-# ifdef __cplusplus
-}
 # endif
-#endif /* TIMERISR_H_ */
+#endif /* COLOR_CLASS_HPP_ */

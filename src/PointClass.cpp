@@ -1,14 +1,11 @@
-#ifndef TIMERISR_H_
-#define TIMERISR_H_
-
-# ifdef __cplusplus
-extern "C" {
-# endif
-
 /******************************************************************************/
-/*! \file TimerISR.h
+/*! \file PointClass.cpp
 ******************************************************************************
 * \brief Short description of the files function
+*
+* Function : More detailed description of the files function
+*
+* Procedures :
 *
 * \author meert1,heimg1
 *
@@ -22,22 +19,26 @@ extern "C" {
 /* ****************************************************************************/
 
 /* --------------------------------- imports ---------------------------------*/
-
-/* ----------------------- module constant declaration -----------------------*/
-
-/* ------------------------- module type declaration -------------------------*/
-
+#include "PointClass.hpp"
+#include <iostream>
 /* ------------------------- module data declaration -------------------------*/
 
 /* ----------------------- module procedure declaration ----------------------*/
+PointClass::PointClass(MatrixClass *newMatrix, int newX, int newY) : ShapeClass(newMatrix),X(newX),Y(newX){
 
-extern void initISR(int,int,uint16_t *);
-extern "C" void TIM2_IRQHandler(void);
-
-/* ****************************************************************************/
-/* End Header : TimerISR.h */
-/* ****************************************************************************/
-# ifdef __cplusplus
+	Matrix->Array.setPixel(newX,newY,0xFFFF);
 }
-# endif
-#endif /* TIMERISR_H_ */
+
+
+PointClass::~PointClass(){
+
+	std::cout << "LineClass destroyed" << std::endl;
+}
+
+PointClass::Draw(LEDArrayClass *ledArray){
+
+	ledArray->setPixel(ShapeClass,newY,0xFFFF);
+}
+/* ****************************************************************************/
+/* End Header : PointClass.cpp */
+/* ****************************************************************************/

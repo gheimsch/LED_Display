@@ -23,14 +23,14 @@
 #include "stm32f4xx.h"
 #include "GPIO.h"
 #include "stm32f4xx_TIM.h"
-#include "TimerISR.h"
 #include "Gamma.h"
+#include "MatrixClass.hpp"
+#include "LEDArrayClass.hpp"
+#include "PointClass.hpp"
 /* --------------------------------- defines ---------------------------------*/
-#define FIRSTPORTBIT 10
-#define NUMBEROFBIT 4
-#define ROWNUMB 16
+
 /* ------------------------- module data declaration -------------------------*/
-uint16_t Buffer[1024] = {0x00};// 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF,
+//uint16_t Buffer[1024] = {0x00}; 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF,
 //		0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF,
 //		0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF,
 //		0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF,
@@ -150,13 +150,8 @@ unsigned char Reverse5Bit[32] = { 0x00, 0x10, 0x08, 0x18, 0x04, 0x14, 0x0C, 0x1C
 		0x02, 0x12, 0x0A, 0x1A, 0x06, 0x16, 0x0E, 0x1E, 0x01, 0x11, 0x09, 0x19, 0x05,
 		0x15, 0x0D, 0x1D, 0x03, 0x13, 0x0B, 0x1B, 0x07, 0x17, 0x0F, 0x1F };
 
-unsigned char bit = 0;
-unsigned char row = ROWNUMB-1;
-unsigned char bitpos = NUMBEROFBIT-1;
-volatile uint32_t Data = 0;
 uint16_t color = 0;
 /* ----------------------- module procedure declaration ----------------------*/
-extern "C" void TIM2_IRQHandler(void);
 
 /* ****************************************************************************/
 /* End Header : Main.c */
@@ -194,133 +189,6 @@ void Delay_us(unsigned int us)
 }
 /* ****************************************************************************/
 /* End : Delay_us */
-/* ****************************************************************************/
-
-/******************************************************************************/
-/* Function: TIM2_IRQHandler */
-/******************************************************************************/
-/*! \brief Timer2 IRQ handler
-*
-* \author meert1,heimg1
-*
-* \version 0.0.1
-*
-* \date 03.04.2014 File Created
-*
-*******************************************************************************/
-void TIM2_IRQHandler(void){
-
-	/*Clear the interrupt bit*/
-	TIM_ClearITPendingBit(TIM2, TIM_IT_Update );
-
-	GPIO_WriteBit(GPIOB,GPIO_Pin_1,Bit_RESET);
-
-	/*Set EN to low (zero active)*/
-	GPIO_WriteBit(GPIOB, GPIO_Pin_14, Bit_SET);
-	/*Set Latch to high*/
-	GPIO_WriteBit(GPIOB, GPIO_Pin_13, Bit_SET);
-
-	/*Increment the bitposition for the BCM*/
-	if (++bitpos >= NUMBEROFBIT) {
-		bitpos = 0;
-		/*Increment the row number*/
-		if (++row >= ROWNUMB) {
-			row = 0;
-		}
-		/*Change the current row address*/
-	} else if (bitpos == 1) {
-		GPIO_Write(GPIOD, (row & 0x0F));
-	}
-
-	//Change duration of the ISR
-	TIM2 ->ARR = ((SystemCoreClock / 20000) - 1) << bitpos;
-	//Set ISR counter to zero
-	TIM2 ->CNT = 0;
-
-	/*Set Latch to low*/
-	GPIO_WriteBit(GPIOB, GPIO_Pin_13, Bit_RESET);
-	/*Set EN to high (zero active)*/
-	GPIO_WriteBit(GPIOB, GPIO_Pin_14, Bit_RESET);
-
-	/*Mask out the data from the buffer and write the data to the port for each bit-position */
-//	if (bitpos == 0) {
-//		for (bit = 0; bit < 32; bit++) {
-//			Data = (Data & ~0x3F)
-//					| ((Buffer[bit + (row + 16) * 32] & 0x010) >> 1)
-//					| ((Buffer[bit + (row + 16) * 32] & 0x200) >> 5)
-//					| ((Buffer[bit + (row + 16) * 32] & 0x4000) >> 9)
-//					| ((Buffer[bit + (row) * 32] & 0x010) >> 4)
-//					| ((Buffer[bit + (row) * 32] & 0x200) >> 8)
-//					| ((Buffer[bit + (row) * 32] & 0x4000) >> 12);
-//			GPIOE ->ODR = (GPIOE ->ODR & ~(0x03F << FIRSTPORTBIT))
-//					| (Data << FIRSTPORTBIT);
-//			GPIOE ->BSRRH = GPIO_Pin_9 ;
-//			GPIOE ->BSRRL = GPIO_Pin_9;
-//		}
-//	} else
-	if (bitpos == 0) {
-		for (bit = 0; bit < 32; bit++) {
-			Data = (Data & ~0x3F) | ((Buffer[bit + (row + 16) * 32] & 0x08))
-					| ((Buffer[bit + (row + 16) * 32] & 0x100) >> 4)
-					| ((Buffer[bit + (row + 16) * 32] & 0x2000) >> 8)
-					| ((Buffer[bit + (row) * 32] & 0x08) >> 3)
-					| ((Buffer[bit + (row) * 32] & 0x100) >> 7)
-					| ((Buffer[bit + (row) * 32] & 0x2000) >> 11);
-			GPIOE ->ODR = (GPIOE ->ODR & ~(0x03F << FIRSTPORTBIT))
-					| (Data << FIRSTPORTBIT);
-			GPIOE ->BSRRH = GPIO_Pin_9 ;
-			GPIOE ->BSRRL = GPIO_Pin_9;
-		}
-	} else if (bitpos == 1) {
-		for (bit = 0; bit < 32; bit++) {
-
-			Data = (Data & ~0x3F)
-					| ((Buffer[bit + (row + 16) * 32] & 0x04) << 1)
-					| ((Buffer[bit + (row + 16) * 32] & 0x80) >> 3)
-					| ((Buffer[bit + (row + 16) * 32] & 0x1000) >> 7)
-					| ((Buffer[bit + (row) * 32] & 0x04) >> 2)
-					| ((Buffer[bit + (row) * 32] & 0x80) >> 6)
-					| ((Buffer[bit + (row) * 32] & 0x1000) >> 10);
-			GPIOE ->ODR = (GPIOE ->ODR & ~(0x03F << FIRSTPORTBIT))
-					| (Data << FIRSTPORTBIT);
-			GPIOE ->BSRRH = GPIO_Pin_9 ;
-			GPIOE ->BSRRL = GPIO_Pin_9;
-		}
-	} else if (bitpos == 2) {
-		for (bit = 0; bit < 32; bit++) {
-
-			Data = (Data & ~0x3F)
-					| ((Buffer[bit + (row + 16) * 32] & 0x02) << 2)
-					| ((Buffer[bit + (row + 16) * 32] & 0x40) >> 2)
-					| ((Buffer[bit + (row + 16) * 32] & 0x800) >> 6)
-					| ((Buffer[bit + (row) * 32] & 0x02) >> 1)
-					| ((Buffer[bit + (row) * 32] & 0x40) >> 5)
-					| ((Buffer[bit + (row) * 32] & 0x800) >> 9);
-			GPIOE ->ODR = (GPIOE ->ODR & ~(0x03F << FIRSTPORTBIT))
-					| (Data << FIRSTPORTBIT);
-			GPIOE ->BSRRH = GPIO_Pin_9 ;
-			GPIOE ->BSRRL = GPIO_Pin_9;
-		}
-	} else if (bitpos == 3) {
-		for (bit = 0; bit < 32; bit++) {
-
-			Data = (Data & ~0x3F)
-					| ((Buffer[bit + (row + 16) * 32] & 0x01) << 3)
-					| ((Buffer[bit + (row + 16) * 32] & 0x20) >> 1)
-					| ((Buffer[bit + (row + 16) * 32] & 0x400) >> 5)
-					| ((Buffer[bit + (row) * 32] & 0x01))
-					| ((Buffer[bit + (row) * 32] & 0x20) >> 4)
-					| ((Buffer[bit + (row) * 32] & 0x400) >> 8);
-			GPIOE ->ODR = (GPIOE ->ODR & ~(0x03F << FIRSTPORTBIT))
-					| (Data << FIRSTPORTBIT);
-			GPIOE ->BSRRH = GPIO_Pin_9 ;
-			GPIOE ->BSRRL = GPIO_Pin_9;
-		}
-	}
-
-}
-/* ****************************************************************************/
-/* End : TIM2_IRQHandler */
 /* ****************************************************************************/
 
 /******************************************************************************/
@@ -370,9 +238,9 @@ uint16_t setColor(unsigned char R,unsigned char G,unsigned char B){
 * \date 03.04.2014 File Created
 *
 *******************************************************************************/
-void setPixel(int x,int y,uint16_t col){
-	Buffer[x+32*y] = col;
-}
+//void setPixel(int x,int y,uint16_t col){
+//	Buffer[x+32*y] = col;
+//}
 /* ****************************************************************************/
 /* End : SetPixel */
 /* ****************************************************************************/
@@ -395,29 +263,27 @@ int main(void)
 {
 
 	initGPIO();
-	initISR();
-	GPIO_WriteBit(GPIOB,GPIO_Pin_14,Bit_SET);		//Enabel auf null
-	GPIO_WriteBit(GPIOB,GPIO_Pin_13,Bit_RESET);		//Lat auf null
-
+	MatrixClass matrix(1,1);
+	PointClass point(&matrix,10,10);
     while(1)
     {
-    	setPixel(0,0,setColor(0x00,0x00,0x80));
-    	setPixel(0,1,setColor(0x00,0x00,0xFF));
-    	setPixel(0,2,setColor(0x00,0x80,0x00));
-    	setPixel(0,3,setColor(0x00,0x80,0x80));
-    	setPixel(0,4,setColor(0x00,0xFF,0x00));
-    	setPixel(0,5,setColor(0x00,0xFF,0xFF));
-    	setPixel(0,6,setColor(0x80,0x00,0x00));
-    	setPixel(0,7,setColor(0x80,0x00,0x80));
-    	setPixel(0,8,setColor(0x80,0x80,0x00));
-    	setPixel(0,9,setColor(0x80,0x80,0x80));
-    	setPixel(0,10,setColor(0xC0,0xC0,0xC0));
-    	setPixel(0,11,setColor(0xFF,0x00,0x00));
-    	setPixel(0,12,setColor(0xFF,0x00,0xFF));
-    	setPixel(0,13,setColor(0xFF,0xFF,0x00));
-    	setPixel(0,14,setColor(0xFF,0xFF,0xFF));
-    	setPixel(0,15,setColor(0x00,0x00,0x00));
-    	setPixel(0,16,setColor(0xFF,0xA5,0x00));
+//    	setPixel(0,0,setColor(0x00,0x00,0x80));
+//    	setPixel(0,1,setColor(0x00,0x00,0xFF));
+//    	setPixel(0,2,setColor(0x00,0x80,0x00));
+//    	setPixel(0,3,setColor(0x00,0x80,0x80));
+//    	setPixel(0,4,setColor(0x00,0xFF,0x00));
+//    	setPixel(0,5,setColor(0x00,0xFF,0xFF));
+//    	setPixel(0,6,setColor(0x80,0x00,0x00));
+//    	setPixel(0,7,setColor(0x80,0x00,0x80));
+//    	setPixel(0,8,setColor(0x80,0x80,0x00));
+//    	setPixel(0,9,setColor(0x80,0x80,0x80));
+//    	setPixel(0,10,setColor(0xC0,0xC0,0xC0));
+//    	setPixel(0,11,setColor(0xFF,0x00,0x00));
+//    	setPixel(0,12,setColor(0xFF,0x00,0xFF));
+//    	setPixel(0,13,setColor(0xFF,0xFF,0x00));
+//    	setPixel(0,14,setColor(0xFF,0xFF,0xFF));
+//    	setPixel(0,15,setColor(0x00,0x00,0x00));
+//    	setPixel(0,16,setColor(0xFF,0xA5,0x00));
 
     }
 }

@@ -1,12 +1,10 @@
-#ifndef TIMERISR_H_
-#define TIMERISR_H_
+#ifndef PRINTER_CLASS_HPP_
+#define PRINTER_CLASS_HPP_
 
 # ifdef __cplusplus
-extern "C" {
-# endif
 
 /******************************************************************************/
-/*! \file TimerISR.h
+/*! \file PrinterClass.hpp
 ******************************************************************************
 * \brief Short description of the files function
 *
@@ -22,7 +20,7 @@ extern "C" {
 /* ****************************************************************************/
 
 /* --------------------------------- imports ---------------------------------*/
-
+#include <stdint.h>
 /* ----------------------- module constant declaration -----------------------*/
 
 /* ------------------------- module type declaration -------------------------*/
@@ -31,13 +29,24 @@ extern "C" {
 
 /* ----------------------- module procedure declaration ----------------------*/
 
-extern void initISR(int,int,uint16_t *);
-extern "C" void TIM2_IRQHandler(void);
+class PrinterClass {
 
+   // Data
+	int Width;
+	int Hight;
+	uint16_t *DataPtr;
+
+   // Methods
+public:
+	PrinterClass();
+	PrinterClass(int newWidth, int newHight, uint16_t *newDataPtr);
+	~PrinterClass();
+
+	void setDataPtr(uint16_t *ptr);
+
+};
 /* ****************************************************************************/
-/* End Header : TimerISR.h */
+/* End Header : Matrix.hpp */
 /* ****************************************************************************/
-# ifdef __cplusplus
-}
 # endif
-#endif /* TIMERISR_H_ */
+#endif /* TIMERISR_HPP_ */

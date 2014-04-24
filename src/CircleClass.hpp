@@ -1,12 +1,10 @@
-#ifndef TIMERISR_H_
-#define TIMERISR_H_
+#ifndef CIRCLE_CLASS_HPP_
+#define CIRCLE_CLASS_HPP_
 
 # ifdef __cplusplus
-extern "C" {
-# endif
 
 /******************************************************************************/
-/*! \file TimerISR.h
+/*! \file CircleClass.hpp
 ******************************************************************************
 * \brief Short description of the files function
 *
@@ -22,7 +20,7 @@ extern "C" {
 /* ****************************************************************************/
 
 /* --------------------------------- imports ---------------------------------*/
-
+#include "ShapeClass.hpp"
 /* ----------------------- module constant declaration -----------------------*/
 
 /* ------------------------- module type declaration -------------------------*/
@@ -31,13 +29,22 @@ extern "C" {
 
 /* ----------------------- module procedure declaration ----------------------*/
 
-extern void initISR(int,int,uint16_t *);
-extern "C" void TIM2_IRQHandler(void);
+class CircleClass : public ShapeClass {
 
+   // Data
+	int X;
+	int Y;
+	int Rad;
+
+   // Methods
+public:
+	CircleClass();
+	CircleClass(MatrixClass *newMatrix, int newX, int newY, int newRad);
+	~CircleClass();
+
+};
 /* ****************************************************************************/
-/* End Header : TimerISR.h */
+/* End Header : CricleClass.hpp */
 /* ****************************************************************************/
-# ifdef __cplusplus
-}
 # endif
-#endif /* TIMERISR_H_ */
+#endif /* CRICLE_CLASS_HPP_ */

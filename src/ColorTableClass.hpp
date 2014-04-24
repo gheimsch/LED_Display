@@ -1,12 +1,10 @@
-#ifndef TIMERISR_H_
-#define TIMERISR_H_
+#ifndef COLOR_TABLE_CLASS_HPP_
+#define COLOR_TABLE_CLASS_HPP_
 
 # ifdef __cplusplus
-extern "C" {
-# endif
 
 /******************************************************************************/
-/*! \file TimerISR.h
+/*! \file ColorTableClass.hpp
 ******************************************************************************
 * \brief Short description of the files function
 *
@@ -31,13 +29,22 @@ extern "C" {
 
 /* ----------------------- module procedure declaration ----------------------*/
 
-extern void initISR(int,int,uint16_t *);
-extern "C" void TIM2_IRQHandler(void);
+class ColorTableClass {
 
+   // Data
+	int Colum;
+	int Row;
+	int *DrawBuffer;
+
+   // Methods
+public:
+	ColorTableClass();
+	ColorTableClass(int newColum, int newRow);
+	~ColorTableClass();
+
+};
 /* ****************************************************************************/
-/* End Header : TimerISR.h */
+/* End Header : ColorTableClass.hpp */
 /* ****************************************************************************/
-# ifdef __cplusplus
-}
 # endif
-#endif /* TIMERISR_H_ */
+#endif /* COLOR_TABLE_CLASS_HPP_ */

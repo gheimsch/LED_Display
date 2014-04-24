@@ -1,14 +1,11 @@
-#ifndef TIMERISR_H_
-#define TIMERISR_H_
-
-# ifdef __cplusplus
-extern "C" {
-# endif
-
 /******************************************************************************/
-/*! \file TimerISR.h
+/*! \file ColorTableClass.cpp
 ******************************************************************************
 * \brief Short description of the files function
+*
+* Function : More detailed description of the files function
+*
+* Procedures :
 *
 * \author meert1,heimg1
 *
@@ -22,22 +19,25 @@ extern "C" {
 /* ****************************************************************************/
 
 /* --------------------------------- imports ---------------------------------*/
-
-/* ----------------------- module constant declaration -----------------------*/
-
-/* ------------------------- module type declaration -------------------------*/
-
+#include "ColorTableClass.hpp"
+#include <iostream>
 /* ------------------------- module data declaration -------------------------*/
 
 /* ----------------------- module procedure declaration ----------------------*/
+ColorTableClass::ColorTableClass(int newColum, int newRow){
 
-extern void initISR(int,int,uint16_t *);
-extern "C" void TIM2_IRQHandler(void);
+	Row = newRow;
+	Colum = newColum;
+	DrawBuffer = new int[(32*Row)+(32*Colum)];
 
-/* ****************************************************************************/
-/* End Header : TimerISR.h */
-/* ****************************************************************************/
-# ifdef __cplusplus
+	std::cout << "LineClass created" << std::endl;
 }
-# endif
-#endif /* TIMERISR_H_ */
+
+
+ColorTableClass::~ColorTableClass(){
+
+	std::cout << "LineClass destroyed" << std::endl;
+}
+/* ****************************************************************************/
+/* End Header : MatrixClass.cpp */
+/* ****************************************************************************/

@@ -59,6 +59,9 @@ void initGPIO(void){
 	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
 	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_DOWN;
 	GPIO_Init(GPIOE, &GPIO_InitStructure);
+
+	GPIO_WriteBit(GPIOB,GPIO_Pin_14,Bit_SET);		//Enabel auf null
+	GPIO_WriteBit(GPIOB,GPIO_Pin_13,Bit_RESET);		//Lat auf null
 }
 
 /* ****************************************************************************/

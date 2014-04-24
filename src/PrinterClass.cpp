@@ -1,12 +1,11 @@
-#ifndef MATRIX_CLASS_HPP_
-#define MATRIX_CLASS_HPP_
-
-# ifdef __cplusplus
-
 /******************************************************************************/
-/*! \file MatrixClass.hpp
+/*! \file PrinterClass.cpp
 ******************************************************************************
 * \brief Short description of the files function
+*
+* Function : More detailed description of the files function
+*
+* Procedures :
 *
 * \author meert1,heimg1
 *
@@ -20,35 +19,31 @@
 /* ****************************************************************************/
 
 /* --------------------------------- imports ---------------------------------*/
-#include "LEDArrayClass.hpp"
 #include "PrinterClass.hpp"
-/* ----------------------- module constant declaration -----------------------*/
-
-/* ------------------------- module type declaration -------------------------*/
-
+#include <iostream>
+#include "TimerISR.h"
 /* ------------------------- module data declaration -------------------------*/
 
 /* ----------------------- module procedure declaration ----------------------*/
+PrinterClass::PrinterClass(int newWidth, int newHight, uint16_t *newDataPtr){
 
-class MatrixClass {
+	Width = newWidth;
+	Hight = newHight;
+	DataPtr = newDataPtr;
+	initISR(Width,Hight,DataPtr);
 
-	friend class ShapeClass;
-	//friend class LEDArrayClass;
-   // Data
-	int Height;
-	int Width;
-	//Colortable
+	std::cout << "LineClass created" << std::endl;
+}
 
-   // Methods
-public:
-	//MatrixClass();
-	LEDArrayClass Array;
-	MatrixClass(int newHeight, int newWidth);
-	~MatrixClass();
 
-};
+PrinterClass::~PrinterClass(){
+
+	std::cout << "LineClass destroyed" << std::endl;
+}
+
+void PrinterClass::setDataPtr(uint16_t *ptr){
+	DataPtr = ptr;
+}
 /* ****************************************************************************/
-/* End Header : MatrixClass.hpp */
+/* End Header : PrinterClass.cpp */
 /* ****************************************************************************/
-# endif
-#endif /* MATRIX_CLASS_HPP_ */
