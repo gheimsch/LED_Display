@@ -44,6 +44,8 @@ public:
 
 	void setColor(uint16_t red, uint16_t green, uint16_t blue);
 	uint16_t getColor(void);
+	void setColor888(unsigned char red,unsigned char green,unsigned char blue);
+	void setColor555(unsigned char red,unsigned char green,unsigned char blue);
 };
 /* ****************************************************************************/
 /* End Header : ColorClass.hpp */

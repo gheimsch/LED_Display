@@ -20,7 +20,10 @@
 /* ****************************************************************************/
 
 /* --------------------------------- imports ---------------------------------*/
+#include <iostream>
+#include <map>
 
+#include "ColorClass.hpp"
 /* ----------------------- module constant declaration -----------------------*/
 
 /* ------------------------- module type declaration -------------------------*/
@@ -32,15 +35,16 @@
 class ColorTableClass {
 
    // Data
-	int Colum;
-	int Row;
-	int *DrawBuffer;
 
    // Methods
 public:
 	ColorTableClass();
-	ColorTableClass(int newColum, int newRow);
 	~ColorTableClass();
+
+	void PrintColors(void);
+	int GetColorForKey(std::string key);
+	void setNew888Color(std::string name, uint8_t red,uint8_t green,uint8_t blue);
+	void setNew555Color(std::string name, uint8_t red,uint8_t green,uint8_t blue);
 
 };
 /* ****************************************************************************/
