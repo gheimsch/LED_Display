@@ -24,8 +24,10 @@
 /* ------------------------- module data declaration -------------------------*/
 
 /* ----------------------- module procedure declaration ----------------------*/
-RectangleClass::RectangleClass(MatrixClass *newMatrix, int newX, int newY, int newWidth, int newHeight) : ShapeClass(newMatrix), X(newX), Y(newX), Width(newWidth), Height(newHeight){
+RectangleClass::RectangleClass(int newX, int newY, int newWidth, int newHeight) : Width(newWidth), Height(newHeight){
 
+	Position.X = newX;
+	Position.Y = newY;
 	std::cout << "LineClass created" << std::endl;
 }
 
@@ -33,6 +35,11 @@ RectangleClass::RectangleClass(MatrixClass *newMatrix, int newX, int newY, int n
 RectangleClass::~RectangleClass(){
 
 	std::cout << "LineClass destroyed" << std::endl;
+}
+
+void RectangleClass::Draw(LEDArrayClass *ledArray){
+
+	ledArray->setPixel(Position.X,Position.Y,0xFFFF);
 }
 /* ****************************************************************************/
 /* End Header : RectangleClass.cpp */

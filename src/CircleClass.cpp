@@ -24,7 +24,10 @@
 /* ------------------------- module data declaration -------------------------*/
 
 /* ----------------------- module procedure declaration ----------------------*/
-CircleClass::CircleClass(MatrixClass *newMatrix, int newX, int newY, int newRad) : ShapeClass(newMatrix),X(newX),Y(newX), Rad(newRad){
+CircleClass::CircleClass(int newX, int newY, int newRad) : Rad(newRad){
+
+	Position.X = newX;
+	Position.Y = newY;
 
 	std::cout << "LineClass created" << std::endl;
 }
@@ -33,6 +36,11 @@ CircleClass::CircleClass(MatrixClass *newMatrix, int newX, int newY, int newRad)
 CircleClass::~CircleClass(){
 
 	std::cout << "LineClass destroyed" << std::endl;
+}
+
+void CircleClass::Draw(LEDArrayClass *ledArray){
+
+	ledArray->setPixel(Position.X,Position.Y,0xFFFF);
 }
 /* ****************************************************************************/
 /* End Header : CircleClass.cpp */

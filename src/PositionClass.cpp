@@ -25,7 +25,12 @@
 /* ------------------------- module data declaration -------------------------*/
 
 /* ----------------------- module procedure declaration ----------------------*/
-PositionClass::PositionClass(const ShapeClass newShape, int newX, int newY) : Shape(newShape), X(newX), Y(newY){
+PositionClass::PositionClass(){
+
+	std::cout << "LineClass created" << std::endl;
+}
+
+PositionClass::PositionClass(int newX, int newY) : X(newX), Y(newY){
 
 	std::cout << "LineClass created" << std::endl;
 }

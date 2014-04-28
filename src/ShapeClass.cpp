@@ -30,7 +30,15 @@
 //	std::cout << "LineClass created" << std::endl;
 //}
 
-ShapeClass::ShapeClass(PositionClass P) : Matrix(NewMatrix), Position(){
+ShapeClass::ShapeClass(){
+
+	std::cout << "LineClass created" << std::endl;
+}
+
+ShapeClass::ShapeClass(int newX, int newY){
+
+	Position.X = newX;
+	Position.Y = newY;
 
 	std::cout << "LineClass created" << std::endl;
 }
@@ -40,10 +48,10 @@ ShapeClass::~ShapeClass(){
 	std::cout << "LineClass destroyed" << std::endl;
 }
 
-void ShapeClass::Draw(){
-
-	std::cout << "LineClass destroyed" << std::endl;
-}
+//virtual void ShapeClass::Draw(LEDArrayClass *){
+//
+//	std::cout << "LineClass destroyed" << std::endl;
+//}
 /* ****************************************************************************/
 /* End Header : ShapeClass.cpp */
 /* ****************************************************************************/

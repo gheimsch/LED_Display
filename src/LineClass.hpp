@@ -40,8 +40,10 @@ class LineClass : public ShapeClass {
    // Methods
 public:
 	LineClass();
-	LineClass(MatrixClass *newMatrix, int newXStart, int newYStart, int newXEnd, int newYEnd);
+	LineClass(int newXStart, int newYStart, int newXEnd, int newYEnd);
 	~LineClass();
+
+	void Draw(LEDArrayClass *);
 
 };
 /* ****************************************************************************/

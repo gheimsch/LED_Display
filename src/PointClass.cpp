@@ -24,9 +24,12 @@
 /* ------------------------- module data declaration -------------------------*/
 
 /* ----------------------- module procedure declaration ----------------------*/
-PointClass::PointClass(MatrixClass *newMatrix, int newX, int newY) : ShapeClass(newMatrix),X(newX),Y(newX){
+PointClass::PointClass(int newX, int newY){
 
-	Matrix->Array.setPixel(newX,newY,0xFFFF);
+	Position.X = newX;
+	Position.Y = newY;
+
+	//Matrix->Array.setPixel(newX,newY,0xFFFF);
 }
 
 
@@ -35,9 +38,9 @@ PointClass::~PointClass(){
 	std::cout << "LineClass destroyed" << std::endl;
 }
 
-PointClass::Draw(LEDArrayClass *ledArray){
+void PointClass::Draw(LEDArrayClass *ledArray){
 
-	ledArray->setPixel(ShapeClass,newY,0xFFFF);
+	ledArray->setPixel(Position.X,Position.Y,0xFFFF);
 }
 /* ****************************************************************************/
 /* End Header : PointClass.cpp */

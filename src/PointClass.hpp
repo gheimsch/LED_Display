@@ -21,6 +21,7 @@
 
 /* --------------------------------- imports ---------------------------------*/
 #include "ShapeClass.hpp"
+#include "LEDArrayClass.hpp"
 /* ----------------------- module constant declaration -----------------------*/
 
 /* ------------------------- module type declaration -------------------------*/
@@ -32,14 +33,14 @@
 class PointClass : public ShapeClass{
 
    // Data
-	int X;
-	int Y;
 
    // Methods
 public:
-	PointClass();
-	PointClass(MatrixClass *newMatrix, int newX, int newY);
+	//PointClass();
+	PointClass(int newX, int newY);
 	~PointClass();
+
+	void Draw(LEDArrayClass *);
 
 };
 /* ****************************************************************************/

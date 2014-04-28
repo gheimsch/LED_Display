@@ -20,7 +20,6 @@
 /* ****************************************************************************/
 
 /* --------------------------------- imports ---------------------------------*/
-#include "ShapeClass.hpp"
 /* ----------------------- module constant declaration -----------------------*/
 
 /* ------------------------- module type declaration -------------------------*/
@@ -31,18 +30,12 @@
 
 class PositionClass {
 
-private:
-	ShapeClass Shape;
-   // Data
-	int X;
-	int Y;
-
-
-
    // Methods
 public:
-	//PositionClass();
-	PositionClass(ShapeClass newShape, int newX, int newY);
+	PositionClass();
+	int X;
+	int Y;
+	PositionClass(int newX, int newY);
 	~PositionClass();
 
 	void SetX(int newX) {X = newX;};

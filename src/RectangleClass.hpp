@@ -21,6 +21,7 @@
 
 /* --------------------------------- imports ---------------------------------*/
 #include "ShapeClass.hpp"
+#include "LEDArrayClass.hpp"
 /* ----------------------- module constant declaration -----------------------*/
 
 /* ------------------------- module type declaration -------------------------*/
@@ -40,8 +41,10 @@ class RectangleClass : public ShapeClass {
    // Methods
 public:
 	RectangleClass();
-	RectangleClass(MatrixClass *newMatrix, int newX, int newY, int newWidth, int newHeight);
+	RectangleClass(int newX, int newY, int newWidth, int newHeight);
 	~RectangleClass();
+
+	void Draw(LEDArrayClass * ledArray);
 
 };
 /* ****************************************************************************/

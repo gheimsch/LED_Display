@@ -264,7 +264,9 @@ int main(void)
 
 	initGPIO();
 	MatrixClass matrix(1,1);
-	PointClass point(&matrix,10,10);
+	//PointClass point(&matrix,10,10);
+	PointClass point(3,3);
+	point.Draw(&matrix.Array);
     while(1)
     {
 //    	setPixel(0,0,setColor(0x00,0x00,0x80));

@@ -20,7 +20,8 @@
 /* ****************************************************************************/
 
 /* --------------------------------- imports ---------------------------------*/
-#include "MatrixClass.hpp"
+#include "PositionClass.hpp"
+#include "LEDArrayClass.hpp"
 /* ----------------------- module constant declaration -----------------------*/
 
 /* ------------------------- module type declaration -------------------------*/
@@ -32,20 +33,18 @@
 class ShapeClass {
 
 
-private:
-	MatrixClass *Matrix;
+protected:
+	//MatrixClass *Matrix;
 	PositionClass Position;
 
    // Methods
 public:
-	//ShapeClass(){};
 	//ShapeClass(MatrixClass *NewMatrix);
-	ShapeClass(PointClass NewPosition);
+	ShapeClass();
+	ShapeClass(int newX, int newY);
 	~ShapeClass();
 
 	void Draw();
-	int getWidth() {return(Matrix->Width);};
-	int getHeight() {return(Matrix->Height);};
 };
 /* ****************************************************************************/
 /* End Header : ShapeClass.hpp */
