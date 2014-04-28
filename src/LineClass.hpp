@@ -36,11 +36,12 @@ class LineClass : public ShapeClass {
 	int YStart;
 	int XEnd;
 	int YEnd;
+	uint16_t Col;
 
    // Methods
 public:
 	LineClass();
-	LineClass(int newXStart, int newYStart, int newXEnd, int newYEnd);
+	LineClass(int newXStart, int newYStart, int newXEnd, int newYEnd, uint16_t newCol);
 	~LineClass();
 
 	void Draw(LEDArrayClass *);

@@ -22,6 +22,7 @@
 /* --------------------------------- imports ---------------------------------*/
 #include "ShapeClass.hpp"
 #include "LEDArrayClass.hpp"
+#include "ColorClass.hpp"
 /* ----------------------- module constant declaration -----------------------*/
 
 /* ------------------------- module type declaration -------------------------*/
@@ -34,12 +35,13 @@ class CircleClass : public ShapeClass {
 
    // Data
 	int Rad;
+	uint16_t Col;
 
 
    // Methods
 public:
 	CircleClass();
-	CircleClass(int newX, int newY, int newRad);
+	CircleClass(int newX, int newY, int newRad, uint16_t newCol);
 	~CircleClass();
 
 	void Draw(LEDArrayClass *ledArray);

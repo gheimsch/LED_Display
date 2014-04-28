@@ -24,10 +24,11 @@
 /* ------------------------- module data declaration -------------------------*/
 
 /* ----------------------- module procedure declaration ----------------------*/
-CircleClass::CircleClass(int newX, int newY, int newRad) : Rad(newRad){
+CircleClass::CircleClass(int newX, int newY, int newRad, uint16_t newCol) : Rad(newRad){
 
 	Position.X = newX;
 	Position.Y = newY;
+	Col = newCol;
 
 	std::cout << "LineClass created" << std::endl;
 }
@@ -48,16 +49,16 @@ void CircleClass::Draw(LEDArrayClass *ledArray){
 		sw = 3 - 2 * Rad;
 		while (x <= y) {
 
-			ledArray->setPixel(Position.X + x,Position.Y + y,0xFFFF);
-			ledArray->setPixel(Position.X + x,Position.Y - y,0xFFFF);
+			ledArray->setPixel(Position.X + x,Position.Y + y,Col);
+			ledArray->setPixel(Position.X + x,Position.Y - y,Col);
 
-			ledArray->setPixel(Position.X - x,Position.Y + y,0xFFFF);
-			ledArray->setPixel(Position.X - x,Position.Y - y,0xFFFF);
+			ledArray->setPixel(Position.X - x,Position.Y + y,Col);
+			ledArray->setPixel(Position.X - x,Position.Y - y,Col);
 
-			ledArray->setPixel(Position.Y + y - d,Position.Y + x,0xFFFF);
-			ledArray->setPixel(Position.Y + y - d,Position.Y - x,0xFFFF);
-			ledArray->setPixel(Position.Y - y - d,Position.Y + x,0xFFFF);
-			ledArray->setPixel(Position.Y - y - d,Position.Y - x,0xFFFF);
+			ledArray->setPixel(Position.Y + y - d,Position.Y + x,Col);
+			ledArray->setPixel(Position.Y + y - d,Position.Y - x,Col);
+			ledArray->setPixel(Position.Y - y - d,Position.Y + x,Col);
+			ledArray->setPixel(Position.Y - y - d,Position.Y - x,Col);
 
 			if (sw < 0)
 				sw += (4 * x + 6);

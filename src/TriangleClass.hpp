@@ -36,11 +36,12 @@ class TriangleClass : public ShapeClass {
 	int Y1;
 	int X2;
 	int Y2;
+	uint16_t Col;
 
    // Methods
 public:
 	TriangleClass();
-	TriangleClass(int newX0, int newY0, int newX1, int newY1, int newX2, int newY2);
+	TriangleClass(int newX0, int newY0, int newX1, int newY1, int newX2, int newY2, uint16_t newCol);
 	~TriangleClass();
 
 	void Draw(LEDArrayClass *);

@@ -24,7 +24,7 @@
 /* ------------------------- module data declaration -------------------------*/
 
 /* ----------------------- module procedure declaration ----------------------*/
-LineClass::LineClass(int newXStart, int newYStart, int newXEnd, int newYEnd): XEnd(newXEnd),YEnd(newYEnd) {
+LineClass::LineClass(int newXStart, int newYStart, int newXEnd, int newYEnd, uint16_t newCol): XEnd(newXEnd),YEnd(newYEnd), Col(newCol) {
 
 	Position.X = newXStart;
 	Position.Y = newYStart;
@@ -70,7 +70,7 @@ void LineClass::Draw(LEDArrayClass *ledArray){
 	   x = Position.X;
 	   y = Position.Y;
 	   err = el/2;
-	   ledArray->setPixel(x,y,0xFFFF);
+	   ledArray->setPixel(x,y,Col);
 
 	// Pixel berechnen
 	   for(t=0; t<el; ++t) // t zaehlt die Pixel, el ist auch Anzahl
@@ -90,7 +90,7 @@ void LineClass::Draw(LEDArrayClass *ledArray){
 	          x += pdx;
 	          y += pdy;
 	      }
-	      ledArray->setPixel(x,y,0xFFFF);
+	      ledArray->setPixel(x,y,Col);
 	   }
 
 

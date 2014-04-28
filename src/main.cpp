@@ -32,6 +32,7 @@
 #include "RectangleClass.hpp"
 #include "EllipseClass.hpp"
 #include "TriangleClass.hpp"
+#include "ColorTableClass.hpp"
 /* --------------------------------- defines ---------------------------------*/
 
 /* ------------------------- module data declaration -------------------------*/
@@ -151,11 +152,6 @@ static unsigned short Picture[] = { 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
 		0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
 		0x0000, 0x0000 };
 
-unsigned char Reverse5Bit[32] = { 0x00, 0x10, 0x08, 0x18, 0x04, 0x14, 0x0C, 0x1C,
-		0x02, 0x12, 0x0A, 0x1A, 0x06, 0x16, 0x0E, 0x1E, 0x01, 0x11, 0x09, 0x19, 0x05,
-		0x15, 0x0D, 0x1D, 0x03, 0x13, 0x0B, 0x1B, 0x07, 0x17, 0x0F, 0x1F };
-
-uint16_t color = 0;
 /* ----------------------- module procedure declaration ----------------------*/
 
 /* ****************************************************************************/
@@ -197,35 +193,6 @@ void Delay_us(unsigned int us)
 /* ****************************************************************************/
 
 /******************************************************************************/
-/* Function: setColor */
-/******************************************************************************/
-/*! \brief Convert and set a 888 color to a 555 color
-*
-* \param[in] parameter1 8bit red value
-* \param[in] parameter2 8bit green value
-* \param[in] parameter2 8bit blue value
-*
-* \return 16bit value with the color
-*
-* \author meert1,heimg1
-*
-* \version 0.0.1
-*
-* \date 03.04.2014 File Created
-*
-*******************************************************************************/
-uint16_t setColor(unsigned char R,unsigned char G,unsigned char B){
-	unsigned char red = R>>3;
-	unsigned char green = G>>3;
-	unsigned char blue = B>>3;
-	return (((Reverse5Bit[red]) | ((Reverse5Bit[green]) << 5)
-				| ((Reverse5Bit[blue]) << 10)));
-}
-/* ****************************************************************************/
-/* End : setColor */
-/* ****************************************************************************/
-
-/******************************************************************************/
 /* Function: main */
 /******************************************************************************/
 /*! \brief main routine
@@ -244,15 +211,20 @@ int main(void)
 
 	initGPIO();
 	MatrixClass matrix(1,1);
-	PrinterClass print(1,1,Picture);
-//	PointClass point(3,3);
-//	point.Draw(&matrix.Array);
-//	LineClass line(0,0,10,10);
-//	line.Draw(&matrix.Array);
+	ColorTableClass coltab;
+	coltab.setNew888Color("Magenta",0xFF,0x00,0xFF);
+	CircleClass Circle(15, 15, 10,coltab.GetColorForKey("Magenta"));
+	Circle.Draw(&matrix.Array);
+	//PrinterClass print(1,1,Picture);
+	PointClass point(3,7,coltab.GetColorForKey("Green"));
+	point.Draw(&matrix.Array);
+
+	LineClass line(0,0,10,10,coltab.GetColorForKey("Red"));
+	line.Draw(&matrix.Array);
 //	CircleClass circle(16,16,10);
 //	circle.Draw(&matrix.Array);
-//	RectangleClass rect(0,0,7,7);
-//	rect.Draw(&matrix.Array);
+	RectangleClass rect(20,20,5,5,coltab.GetColorForKey("Blue"));
+	rect.Draw(&matrix.Array);
 //	rect.setPosition(7,7);
 //	rect.Fill(&matrix.Array);
 //	rect.setPosition(8,8);

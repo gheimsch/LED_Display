@@ -68,7 +68,7 @@ void ColorTableClass::PrintColors(void)
 }
 
 
-int ColorTableClass::GetColorForKey(std::string key)
+uint16_t ColorTableClass::GetColorForKey(std::string key)
 {
 	if(colorMap.find(key) != colorMap.end())
 	{
@@ -84,7 +84,7 @@ int ColorTableClass::GetColorForKey(std::string key)
 		std::cout << "Could not find a color with name \"" << key << "\"" << std::endl;
 
 		/* Return the color with the given key */
-		return -1;
+		return 0;
 	}
 
 }

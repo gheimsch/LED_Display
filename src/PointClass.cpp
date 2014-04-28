@@ -24,12 +24,11 @@
 /* ------------------------- module data declaration -------------------------*/
 
 /* ----------------------- module procedure declaration ----------------------*/
-PointClass::PointClass(int newX, int newY){
+PointClass::PointClass(int newX, int newY, uint16_t newCol) : Col(newCol){
 
 	Position.X = newX;
 	Position.Y = newY;
 
-	//Matrix->Array.setPixel(newX,newY,0xFFFF);
 }
 
 
@@ -40,7 +39,7 @@ PointClass::~PointClass(){
 
 void PointClass::Draw(LEDArrayClass *ledArray){
 
-	ledArray->setPixel(Position.X,Position.Y,0xFFFF);
+	ledArray->setPixel(Position.X,Position.Y,Col);
 }
 /* ****************************************************************************/
 /* End Header : PointClass.cpp */

@@ -38,11 +38,12 @@ private:
 	int Y;
 	int Width;
 	int Height;
+	uint16_t Col;
 
    // Methods
 public:
 	RectangleClass();
-	RectangleClass(int newX, int newY, int newWidth, int newHeight);
+	RectangleClass(int newX, int newY, int newWidth, int newHeight, uint16_t newCol);
 	~RectangleClass();
 
 	void Draw(LEDArrayClass * ledArray);

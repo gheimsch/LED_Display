@@ -33,11 +33,12 @@
 class PointClass : public ShapeClass{
 
    // Data
+	uint16_t Col;
 
    // Methods
 public:
 	//PointClass();
-	PointClass(int newX, int newY);
+	PointClass(int newX, int newY, uint16_t newCol);
 	~PointClass();
 
 	void Draw(LEDArrayClass *);

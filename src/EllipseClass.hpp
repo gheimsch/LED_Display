@@ -35,12 +35,13 @@ class EllipseClass : public ShapeClass {
    // Data
 	int A;
 	int B;
+	uint16_t Col;
 
 
    // Methods
 public:
 	EllipseClass();
-	EllipseClass(int newX, int newY, int newA, int newB);
+	EllipseClass(int newX, int newY, int newA, int newB, uint16_t newCol);
 	~EllipseClass();
 
 	void Draw(LEDArrayClass *ledArray);

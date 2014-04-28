@@ -25,7 +25,7 @@
 /* ------------------------- module data declaration -------------------------*/
 
 /* ----------------------- module procedure declaration ----------------------*/
-RectangleClass::RectangleClass(int newX, int newY, int newWidth, int newHeight) : Width(newWidth), Height(newHeight){
+RectangleClass::RectangleClass(int newX, int newY, int newWidth, int newHeight, uint16_t newCol) : Width(newWidth), Height(newHeight), Col(newCol){
 
 	Position.X = newX;
 	Position.Y = newY;
@@ -40,13 +40,13 @@ RectangleClass::~RectangleClass(){
 
 void RectangleClass::Draw(LEDArrayClass *ledArray){
 
-	LineClass line1(Position.X,Position.Y,Position.X+Width-1,Position.Y);
+	LineClass line1(Position.X,Position.Y,Position.X+Width-1,Position.Y,Col);
 	line1.Draw(ledArray);
-	LineClass line2(Position.X,Position.Y+Height-1,Position.X+Width-1,Position.Y+Height-1);
+	LineClass line2(Position.X,Position.Y+Height-1,Position.X+Width-1,Position.Y+Height-1,Col);
 	line2.Draw(ledArray);
-	LineClass line3(Position.X,Position.Y,Position.X,Position.Y+Height-1);
+	LineClass line3(Position.X,Position.Y,Position.X,Position.Y+Height-1,Col);
 	line3.Draw(ledArray);
-	LineClass line4(Position.X+Width-1,Position.Y,Position.X+Width-1,Position.Y+Height-1);
+	LineClass line4(Position.X+Width-1,Position.Y,Position.X+Width-1,Position.Y+Height-1,Col);
 	line4.Draw(ledArray);
 
 }
@@ -57,11 +57,11 @@ void RectangleClass::Fill(LEDArrayClass *ledArray){
 	unsigned char i;
 
 	for (i=Position.X; i<Position.X+Width; i++) {
-		line = new LineClass(i,Position.Y, i,Position.Y+Height-1);
+		line = new LineClass(i,Position.Y, i,Position.Y+Height-1,Col);
 		line->Draw(ledArray);
 	}
 	for (i=Position.Y; i<Position.Y+Height; i++) {
-		line = new LineClass(Position.X,i,Position.X+Width-1,i);
+		line = new LineClass(Position.X,i,Position.X+Width-1,i,Col);
 		line->Draw(ledArray);
 	}
 }

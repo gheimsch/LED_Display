@@ -24,7 +24,7 @@
 /* ------------------------- module data declaration -------------------------*/
 
 /* ----------------------- module procedure declaration ----------------------*/
-EllipseClass::EllipseClass(int newX, int newY, int newA, int newB) : A(newA), B(newB){
+EllipseClass::EllipseClass(int newX, int newY, int newA, int newB, uint16_t newCol) : A(newA), B(newB),Col(newCol){
 
 	Position.X = newX;
 	Position.Y = newY;
@@ -45,10 +45,10 @@ void EllipseClass::Draw(LEDArrayClass *ledArray){
 	   int err = b2-(2*B-1)*a2, e2; /* Fehler im 1. Schritt */
 
 	   do {
-	       ledArray->setPixel(Position.X + dx,Position.Y + dy,0xFFFF);/* I. Quadrant */
-	       ledArray->setPixel(Position.X - dx,Position.Y + dy,0xFFFF);/* II. Quadrant */
-	       ledArray->setPixel(Position.X - dx,Position.Y - dy,0xFFFF);/* III. Quadrant */
-	       ledArray->setPixel(Position.X + dx,Position.Y - dy,0xFFFF);/* IV. Quadrant */
+	       ledArray->setPixel(Position.X + dx,Position.Y + dy,Col);/* I. Quadrant */
+	       ledArray->setPixel(Position.X - dx,Position.Y + dy,Col);/* II. Quadrant */
+	       ledArray->setPixel(Position.X - dx,Position.Y - dy,Col);/* III. Quadrant */
+	       ledArray->setPixel(Position.X + dx,Position.Y - dy,Col);/* IV. Quadrant */
 
 	       if(dx == 150){
 	    	   dx = 0;
@@ -67,8 +67,8 @@ void EllipseClass::Draw(LEDArrayClass *ledArray){
 	   } while (dy >= 0);
 
 	   while (dx++ < A) { /* fehlerhafter Abbruch bei flachen Ellipsen (b=1) */
-		   ledArray->setPixel(Position.X + dx,Position.Y,0xFFFF);/* -> Spitze der Ellipse vollenden */
-		   ledArray->setPixel(Position.X - dx,Position.Y,0xFFFF);
+		   ledArray->setPixel(Position.X + dx,Position.Y,Col);/* -> Spitze der Ellipse vollenden */
+		   ledArray->setPixel(Position.X - dx,Position.Y,Col);
 	   }
 }
 /* ****************************************************************************/
