@@ -1,5 +1,5 @@
 /******************************************************************************/
-/*! \file RectangleClass.cpp
+/*! \file TriangleClass.cpp
 ******************************************************************************
 * \brief Short description of the files function
 *
@@ -19,52 +19,36 @@
 /* ****************************************************************************/
 
 /* --------------------------------- imports ---------------------------------*/
-#include "RectangleClass.hpp"
+#include "TriangleClass.hpp"
 #include "LineClass.hpp"
 #include <iostream>
 /* ------------------------- module data declaration -------------------------*/
 
 /* ----------------------- module procedure declaration ----------------------*/
-RectangleClass::RectangleClass(int newX, int newY, int newWidth, int newHeight) : Width(newWidth), Height(newHeight){
+TriangleClass::TriangleClass(int newX0, int newY0, int newX1, int newY1, int newX2, int newY2): X1(newX1),Y1(newY1),X2(newX2),Y2(newY2) {
 
-	Position.X = newX;
-	Position.Y = newY;
+	Position.X = newX0;
+	Position.Y = newY0;
 	std::cout << "LineClass created" << std::endl;
 }
 
 
-RectangleClass::~RectangleClass(){
+TriangleClass::~TriangleClass(){
 
 	std::cout << "LineClass destroyed" << std::endl;
 }
 
-void RectangleClass::Draw(LEDArrayClass *ledArray){
-
-	LineClass line1(Position.X,Position.Y,Position.X+Width-1,Position.Y);
-	line1.Draw(ledArray);
-	LineClass line2(Position.X,Position.Y+Height-1,Position.X+Width-1,Position.Y+Height-1);
-	line2.Draw(ledArray);
-	LineClass line3(Position.X,Position.Y,Position.X,Position.Y+Height-1);
-	line3.Draw(ledArray);
-	LineClass line4(Position.X+Width-1,Position.Y,Position.X+Width-1,Position.Y+Height-1);
-	line4.Draw(ledArray);
-
-}
-
-void RectangleClass::Fill(LEDArrayClass *ledArray){
+void TriangleClass::Draw(LEDArrayClass *ledArray){
 
 	LineClass * line;
-	unsigned char i;
 
-	for (i=Position.X; i<Position.X+Width; i++) {
-		line = new LineClass(i,Position.Y, i,Position.Y+Height-1);
-		line->Draw(ledArray);
-	}
-	for (i=Position.Y; i<Position.Y+Height; i++) {
-		line = new LineClass(Position.X,i,Position.X+Width-1,i);
-		line->Draw(ledArray);
-	}
+	line = new LineClass(Position.X, Position.Y, X1, Y1);
+	line->Draw(ledArray);
+	line = new LineClass(X1, Y1, X2, Y2);
+	line->Draw(ledArray);
+	line = new LineClass(X2, Y2, Position.X, Position.Y);
+	line->Draw(ledArray);
 }
 /* ****************************************************************************/
-/* End Header : RectangleClass.cpp */
+/* End Header : LineClass.cpp */
 /* ****************************************************************************/

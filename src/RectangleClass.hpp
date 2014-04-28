@@ -32,6 +32,7 @@
 
 class RectangleClass : public ShapeClass {
 
+private:
    // Data
 	int X;
 	int Y;
@@ -45,6 +46,7 @@ public:
 	~RectangleClass();
 
 	void Draw(LEDArrayClass * ledArray);
+	void Fill(LEDArrayClass * ledArray);
 
 };
 /* ****************************************************************************/

@@ -40,7 +40,36 @@ CircleClass::~CircleClass(){
 
 void CircleClass::Draw(LEDArrayClass *ledArray){
 
-	ledArray->setPixel(Position.X,Position.Y,0xFFFF);
+		int sw=0, y=0, x=0;
+		unsigned char d;
+
+		d = Position.Y - Position.X;
+		y = Rad;
+		sw = 3 - 2 * Rad;
+		while (x <= y) {
+
+			ledArray->setPixel(Position.X + x,Position.Y + y,0xFFFF);
+			ledArray->setPixel(Position.X + x,Position.Y - y,0xFFFF);
+
+			ledArray->setPixel(Position.X - x,Position.Y + y,0xFFFF);
+			ledArray->setPixel(Position.X - x,Position.Y - y,0xFFFF);
+
+			ledArray->setPixel(Position.Y + y - d,Position.Y + x,0xFFFF);
+			ledArray->setPixel(Position.Y + y - d,Position.Y - x,0xFFFF);
+			ledArray->setPixel(Position.Y - y - d,Position.Y + x,0xFFFF);
+			ledArray->setPixel(Position.Y - y - d,Position.Y - x,0xFFFF);
+
+			if (sw < 0)
+				sw += (4 * x + 6);
+			else {
+
+				sw += (4 * (x - y) + 10);
+				y--;
+			}
+
+			x++;
+		}
+
 }
 /* ****************************************************************************/
 /* End Header : CircleClass.cpp */

@@ -25,10 +25,6 @@
 /* ------------------------- module data declaration -------------------------*/
 
 /* ----------------------- module procedure declaration ----------------------*/
-//ShapeClass::ShapeClass(MatrixClass *NewMatrix) : Matrix(NewMatrix), Position(){
-//
-//	std::cout << "LineClass created" << std::endl;
-//}
 
 ShapeClass::ShapeClass(){
 
@@ -48,10 +44,13 @@ ShapeClass::~ShapeClass(){
 	std::cout << "LineClass destroyed" << std::endl;
 }
 
-//virtual void ShapeClass::Draw(LEDArrayClass *){
-//
-//	std::cout << "LineClass destroyed" << std::endl;
-//}
+void ShapeClass::setPosition(int newXPos, int newYPos) {
+	Position.X = newXPos;
+	Position.Y = newYPos;
+
+	std::cout << "LineClass destroyed" << std::endl;
+}
+
 /* ****************************************************************************/
 /* End Header : ShapeClass.cpp */
 /* ****************************************************************************/

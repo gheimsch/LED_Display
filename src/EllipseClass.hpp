@@ -1,10 +1,10 @@
-#ifndef SHAPE_CLASS_HPP_
-#define SHAPE_CLASS_HPP_
+#ifndef ELLIPSE_CLASS_HPP_
+#define ELLIPSE_CLASS_HPP_
 
 # ifdef __cplusplus
 
 /******************************************************************************/
-/*! \file ShapeClass.hpp
+/*! \file EllipseClass.hpp
 ******************************************************************************
 * \brief Short description of the files function
 *
@@ -20,7 +20,7 @@
 /* ****************************************************************************/
 
 /* --------------------------------- imports ---------------------------------*/
-#include "PositionClass.hpp"
+#include "ShapeClass.hpp"
 #include "LEDArrayClass.hpp"
 /* ----------------------- module constant declaration -----------------------*/
 
@@ -30,26 +30,24 @@
 
 /* ----------------------- module procedure declaration ----------------------*/
 
-/* ****************************************************************************/
-/* End Header : ShapeClass.hpp */
-/* ****************************************************************************/
+class EllipseClass : public ShapeClass {
 
-class ShapeClass {
+   // Data
+	int A;
+	int B;
 
-
-protected:
-	PositionClass Position;
 
    // Methods
 public:
-	ShapeClass();
-	ShapeClass(int newX, int newY);
-	~ShapeClass();
+	EllipseClass();
+	EllipseClass(int newX, int newY, int newA, int newB);
+	~EllipseClass();
 
-	void Draw();
-	void Fill();
-	void setPosition(int newXPos, int newYPos);
+	void Draw(LEDArrayClass *ledArray);
+
 };
-
+/* ****************************************************************************/
+/* End Header : EllipseClass.hpp */
+/* ****************************************************************************/
 # endif
-#endif /* SHAPE_CLASS_HPP_ */
+#endif /* ELLIPSE_CLASS_HPP_ */

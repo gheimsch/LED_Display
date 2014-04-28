@@ -1,10 +1,10 @@
-#ifndef SHAPE_CLASS_HPP_
-#define SHAPE_CLASS_HPP_
+#ifndef TRIANGLE_CLASS_HPP_
+#define TRIANGLE_CLASS_HPP_
 
 # ifdef __cplusplus
 
 /******************************************************************************/
-/*! \file ShapeClass.hpp
+/*! \file TRIANGLEClass.hpp
 ******************************************************************************
 * \brief Short description of the files function
 *
@@ -20,8 +20,7 @@
 /* ****************************************************************************/
 
 /* --------------------------------- imports ---------------------------------*/
-#include "PositionClass.hpp"
-#include "LEDArrayClass.hpp"
+#include "ShapeClass.hpp"
 /* ----------------------- module constant declaration -----------------------*/
 
 /* ------------------------- module type declaration -------------------------*/
@@ -30,26 +29,25 @@
 
 /* ----------------------- module procedure declaration ----------------------*/
 
-/* ****************************************************************************/
-/* End Header : ShapeClass.hpp */
-/* ****************************************************************************/
+class TriangleClass : public ShapeClass {
 
-class ShapeClass {
-
-
-protected:
-	PositionClass Position;
+   // Data
+	int X1;
+	int Y1;
+	int X2;
+	int Y2;
 
    // Methods
 public:
-	ShapeClass();
-	ShapeClass(int newX, int newY);
-	~ShapeClass();
+	TriangleClass();
+	TriangleClass(int newX0, int newY0, int newX1, int newY1, int newX2, int newY2);
+	~TriangleClass();
 
-	void Draw();
-	void Fill();
-	void setPosition(int newXPos, int newYPos);
+	void Draw(LEDArrayClass *);
+
 };
-
+/* ****************************************************************************/
+/* End Header : TriangleClass.hpp */
+/* ****************************************************************************/
 # endif
-#endif /* SHAPE_CLASS_HPP_ */
+#endif /* TRIANGLE_CLASS_HPP_ */
