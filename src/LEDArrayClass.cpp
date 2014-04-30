@@ -46,7 +46,9 @@ LEDArrayClass::~LEDArrayClass(){
 }
 
 void LEDArrayClass::setPixel(int x,int y,uint16_t col){
-	ledArray[x+(32*1)*y] = col;
+
+	if((x < 0) || (x >= (32*Width)) || (y < 0) || (y >= (32*Height))) return;
+	ledArray[x+(32*Width)*y] = col;
 }
 
 uint16_t * LEDArrayClass::getPtr(void){

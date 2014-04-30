@@ -30,8 +30,36 @@ void initGPIO(void){
 
     /* Initialisiere pins */
 
+	GPIO_InitTypeDef  GPIO_InitStructure;
+	EXTI_InitTypeDef EXTI_InitStructure;
+	NVIC_InitTypeDef NVIC_InitStructure;
+
+	/*User Button*/
+    RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
+    GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_Init(GPIOA, &GPIO_InitStructure);
+
+    SYSCFG_EXTILineConfig(GPIOA, GPIO_Pin_0);
+
+    /* Configure Button EXTI line */
+    EXTI_InitStructure.EXTI_Line = EXTI_Line0;
+    EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
+    EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;
+    EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+    EXTI_Init(&EXTI_InitStructure);
+
+    /* Enable and set Button EXTI Interrupt to the lowest priority */
+    NVIC_InitStructure.NVIC_IRQChannel = EXTI0_IRQn ;
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x0F;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x0F;
+    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+
+    NVIC_Init(&NVIC_InitStructure);
+
 	/*EN pin B14 STB pin B13*/
-    GPIO_InitTypeDef  GPIO_InitStructure;
     RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
     GPIO_InitStructure.GPIO_Pin =	GPIO_Pin_1|GPIO_Pin_12|GPIO_Pin_13|GPIO_Pin_14;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;

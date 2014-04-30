@@ -21,6 +21,7 @@
 /* --------------------------------- imports ---------------------------------*/
 #include "CircleClass.hpp"
 #include <iostream>
+#include <stdlib.h>
 /* ------------------------- module data declaration -------------------------*/
 
 /* ----------------------- module procedure declaration ----------------------*/
@@ -42,11 +43,11 @@ CircleClass::~CircleClass(){
 void CircleClass::Draw(LEDArrayClass *ledArray){
 
 		int sw=0, y=0, x=0;
-		unsigned char d;
+		signed char d;
 
 		d = Position.Y - Position.X;
 		y = Rad;
-		sw = 3 - 2 * Rad;
+		sw = 2 - 2 * Rad;
 		while (x <= y) {
 
 			ledArray->setPixel(Position.X + x,Position.Y + y,Col);

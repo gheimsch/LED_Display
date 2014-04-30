@@ -113,14 +113,14 @@ void TIM2_IRQHandler(void){
 
 	/*Mask out the data from the buffer and write the data to the port for each bit-position */
 //	if (bitpos == 0) {
-//		for (bit = 0; bit < 32; bit++) {
+//		for (bit = 0; bit < (32*Width); bit++) {
 //			Data = (Data & ~0x3F)
-//					| ((Buffer[bit + (row + 16) * 32] & 0x010) >> 1)
-//					| ((Buffer[bit + (row + 16) * 32] & 0x200) >> 5)
-//					| ((Buffer[bit + (row + 16) * 32] & 0x4000) >> 9)
-//					| ((Buffer[bit + (row) * 32] & 0x010) >> 4)
-//					| ((Buffer[bit + (row) * 32] & 0x200) >> 8)
-//					| ((Buffer[bit + (row) * 32] & 0x4000) >> 12);
+//					| ((Buffer[bit + (row + 16) * (32*Width)] & 0x010) >> 1)
+//					| ((Buffer[bit + (row + 16) * (32*Width)] & 0x200) >> 5)
+//					| ((Buffer[bit + (row + 16) * (32*Width)] & 0x4000) >> 9)
+//					| ((Buffer[bit + (row) * (32*Width)] & 0x010) >> 4)
+//					| ((Buffer[bit + (row) * (32*Width)] & 0x200) >> 8)
+//					| ((Buffer[bit + (row) * (32*Width)] & 0x4000) >> 12);
 //			GPIOE ->ODR = (GPIOE ->ODR & ~(0x03F << FIRSTPORTBIT))
 //					| (Data << FIRSTPORTBIT);
 //			GPIOE ->BSRRH = GPIO_Pin_9 ;
@@ -128,58 +128,58 @@ void TIM2_IRQHandler(void){
 //		}
 //	} else
 	if (bitpos == 0) {
-		for (bit = 0; bit < 32; bit++) {
-			Data = (Data & ~0x3F) | ((Buffer[bit + (row + 16) * 32] & 0x08))
-					| ((Buffer[bit + (row + 16) * 32] & 0x100) >> 4)
-					| ((Buffer[bit + (row + 16) * 32] & 0x2000) >> 8)
-					| ((Buffer[bit + (row) * 32] & 0x08) >> 3)
-					| ((Buffer[bit + (row) * 32] & 0x100) >> 7)
-					| ((Buffer[bit + (row) * 32] & 0x2000) >> 11);
+		for (bit = 0; bit < (32*Width); bit++) {
+			Data = (Data & ~0x3F) | ((Buffer[bit + (row + 16) * (32*Width)] & 0x08))
+					| ((Buffer[bit + (row + 16) * (32*Width)] & 0x100) >> 4)
+					| ((Buffer[bit + (row + 16) * (32*Width)] & 0x2000) >> 8)
+					| ((Buffer[bit + (row) * (32*Width)] & 0x08) >> 3)
+					| ((Buffer[bit + (row) * (32*Width)] & 0x100) >> 7)
+					| ((Buffer[bit + (row) * (32*Width)] & 0x2000) >> 11);
 			GPIOE ->ODR = (GPIOE ->ODR & ~(0x03F << FIRSTPORTBIT))
 					| (Data << FIRSTPORTBIT);
 			GPIOE ->BSRRH = GPIO_Pin_9 ;
 			GPIOE ->BSRRL = GPIO_Pin_9;
 		}
 	} else if (bitpos == 1) {
-		for (bit = 0; bit < 32; bit++) {
+		for (bit = 0; bit < (32*Width); bit++) {
 
 			Data = (Data & ~0x3F)
-					| ((Buffer[bit + (row + 16) * 32] & 0x04) << 1)
-					| ((Buffer[bit + (row + 16) * 32] & 0x80) >> 3)
-					| ((Buffer[bit + (row + 16) * 32] & 0x1000) >> 7)
-					| ((Buffer[bit + (row) * 32] & 0x04) >> 2)
-					| ((Buffer[bit + (row) * 32] & 0x80) >> 6)
-					| ((Buffer[bit + (row) * 32] & 0x1000) >> 10);
+					| ((Buffer[bit + (row + 16) * (32*Width)] & 0x04) << 1)
+					| ((Buffer[bit + (row + 16) * (32*Width)] & 0x80) >> 3)
+					| ((Buffer[bit + (row + 16) * (32*Width)] & 0x1000) >> 7)
+					| ((Buffer[bit + (row) * (32*Width)] & 0x04) >> 2)
+					| ((Buffer[bit + (row) * (32*Width)] & 0x80) >> 6)
+					| ((Buffer[bit + (row) * (32*Width)] & 0x1000) >> 10);
 			GPIOE ->ODR = (GPIOE ->ODR & ~(0x03F << FIRSTPORTBIT))
 					| (Data << FIRSTPORTBIT);
 			GPIOE ->BSRRH = GPIO_Pin_9 ;
 			GPIOE ->BSRRL = GPIO_Pin_9;
 		}
 	} else if (bitpos == 2) {
-		for (bit = 0; bit < 32; bit++) {
+		for (bit = 0; bit < (32*Width); bit++) {
 
 			Data = (Data & ~0x3F)
-					| ((Buffer[bit + (row + 16) * 32] & 0x02) << 2)
-					| ((Buffer[bit + (row + 16) * 32] & 0x40) >> 2)
-					| ((Buffer[bit + (row + 16) * 32] & 0x800) >> 6)
-					| ((Buffer[bit + (row) * 32] & 0x02) >> 1)
-					| ((Buffer[bit + (row) * 32] & 0x40) >> 5)
-					| ((Buffer[bit + (row) * 32] & 0x800) >> 9);
+					| ((Buffer[bit + (row + 16) * (32*Width)] & 0x02) << 2)
+					| ((Buffer[bit + (row + 16) * (32*Width)] & 0x40) >> 2)
+					| ((Buffer[bit + (row + 16) * (32*Width)] & 0x800) >> 6)
+					| ((Buffer[bit + (row) * (32*Width)] & 0x02) >> 1)
+					| ((Buffer[bit + (row) * (32*Width)] & 0x40) >> 5)
+					| ((Buffer[bit + (row) * (32*Width)] & 0x800) >> 9);
 			GPIOE ->ODR = (GPIOE ->ODR & ~(0x03F << FIRSTPORTBIT))
 					| (Data << FIRSTPORTBIT);
 			GPIOE ->BSRRH = GPIO_Pin_9 ;
 			GPIOE ->BSRRL = GPIO_Pin_9;
 		}
 	} else if (bitpos == 3) {
-		for (bit = 0; bit < 32; bit++) {
+		for (bit = 0; bit < (32*Width); bit++) {
 
 			Data = (Data & ~0x3F)
-					| ((Buffer[bit + (row + 16) * 32] & 0x01) << 3)
-					| ((Buffer[bit + (row + 16) * 32] & 0x20) >> 1)
-					| ((Buffer[bit + (row + 16) * 32] & 0x400) >> 5)
-					| ((Buffer[bit + (row) * 32] & 0x01))
-					| ((Buffer[bit + (row) * 32] & 0x20) >> 4)
-					| ((Buffer[bit + (row) * 32] & 0x400) >> 8);
+					| ((Buffer[bit + (row + 16) * (32*Width)] & 0x01) << 3)
+					| ((Buffer[bit + (row + 16) * (32*Width)] & 0x20) >> 1)
+					| ((Buffer[bit + (row + 16) * (32*Width)] & 0x400) >> 5)
+					| ((Buffer[bit + (row) * (32*Width)] & 0x01))
+					| ((Buffer[bit + (row) * (32*Width)] & 0x20) >> 4)
+					| ((Buffer[bit + (row) * (32*Width)] & 0x400) >> 8);
 			GPIOE ->ODR = (GPIOE ->ODR & ~(0x03F << FIRSTPORTBIT))
 					| (Data << FIRSTPORTBIT);
 			GPIOE ->BSRRH = GPIO_Pin_9 ;

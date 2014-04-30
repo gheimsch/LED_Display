@@ -65,6 +65,43 @@ uint16_t ColorClass::getColor(void)
 				| ((Reverse5Bit[Blue]) << 10)));
 }
 
+uint16_t ColorClass::getHSV2RGB(long hue, uint8_t sat, uint8_t val) {
+
+  uint8_t r, g, b, lo;
+  uint16_t s1, v1;
+
+  // Hue
+  hue %= 1536; // -1535 to +1535
+  if(hue < 0) hue += 1536; // 0 to +1535
+  lo = hue & 255; // Low byte = primary/secondary color mix
+  switch(hue >> 8) { // High byte = sextant of colorwheel
+    case 0 : r = 255 ; g = lo ; b = 0 ; break; // R to Y
+    case 1 : r = 255 - lo; g = 255 ; b = 0 ; break; // Y to G
+    case 2 : r = 0 ; g = 255 ; b = lo ; break; // G to C
+    case 3 : r = 0 ; g = 255 - lo; b = 255 ; break; // C to B
+    case 4 : r = lo ; g = 0 ; b = 255 ; break; // B to M
+    default: r = 255 ; g = 0 ; b = 255 - lo; break; // M to R
+  }
+
+  // Saturation: add 1 so range is 1 to 256, allowig a quick shift operation
+  // on the result rather than a costly divide, while the type upgrade to int
+  // avoids repeated type conversions in both directions.
+  s1 = sat + 1;
+  r = 255 - (((255 - r) * s1) >> 8);
+  g = 255 - (((255 - g) * s1) >> 8);
+  b = 255 - (((255 - b) * s1) >> 8);
+
+  // Value (brightness) & 16-bit color reduction: similar to above, add 1
+  // to allow shifts, and upgrade to int makes other conversions implicit.
+  v1 = val + 1;
+
+    r = (r * v1); //>> 8; // 8-bit results
+    g = (g * v1);// >> 8;
+    b = (b * v1);// >> 8;
+	return (((Reverse5Bit[r]) | ((Reverse5Bit[g]) << 5)
+				| ((Reverse5Bit[b]) << 10)));
+}
+
 
 /******************************************************************************/
 /* Function: setColor888 */
