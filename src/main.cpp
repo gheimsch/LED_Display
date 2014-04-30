@@ -35,8 +35,8 @@
 #include "ColorTableClass.hpp"
 #include <math.h>
 /* --------------------------------- defines ---------------------------------*/
-#define Row		1
-#define Colum	1
+//#define Row		1
+//#define Colum	1
 /* ------------------------- module data declaration -------------------------*/
 static uint16_t  Picture[] = { 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
 		0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
@@ -326,34 +326,134 @@ void Delay_us(unsigned int us)
 * \date 03.04.2014 File Created
 *
 *******************************************************************************/
+//#define DEMO_1 /* 1 Panel */
+//#define DEMO_2	/* 1 - 2 Panel */
+#define DEMO_3	/* 2 Panel */
+
+
 int main(void)
 {
-
+	/* Init the GPIO's */
 	initGPIO();
-	MatrixClass matrix(Row,Colum);
-	ColorTableClass coltab;
-//	coltab.setNew888Color("Magenta",0xFF,0x00,0xFF);
-//	PointClass point(5, 5, coltab.GetColorForKey("Red"));
-//	CircleClass Circle(32,32, 32,coltab.GetColorForKey("Magenta"));
-//	Circle.Draw(&matrix.Array);
-//	//PrinterClass print(1,1,Picture);
-//	PointClass point(3,7,coltab.GetColorForKey("Green"));
-//	point.Draw(&matrix.Array);
 
-//	LineClass line(0,0,64,32,coltab.GetColorForKey("Red"));
-//	line.Draw(&matrix.Array);
-//	CircleClass circle(16,16,10);
-//	circle.Draw(&matrix.Array);
-//	RectangleClass rect(0,25,60,5,coltab.GetColorForKey("Blue"));
-//	rect.Draw(&matrix.Array);
-//	rect.setPosition(7,7);
-//	rect.Fill(&matrix.Array);
-//	rect.setPosition(8,8);
-//	rect.Draw(&matrix.Array);
-//	EllipseClass ell(15,15,12,5,coltab.GetColorForKey("Blue"));
-//	ell.Draw(&matrix.Array);
-//	TriangleClass tri(15,0,3,16,30,16);
-//	tri.Draw(&matrix.Array);
+#ifdef DEMO_1
+
+	int row = 1;
+	int colum = 1;
+
+	/* Create a new matrix */
+	MatrixClass matrix(row,colum);
+
+	/* Create new color table */
+	ColorTableClass coltab;
+
+	/* Add new color "Magenta" and "Orange" */
+	coltab.setNew888Color("Magenta",0xFF,0x00,0xFF);
+	coltab.setNew888Color("Orange",0xFF,0xa5,0x00);
+
+	/* Draw a point */
+	PointClass point(28,4,coltab.GetColorForKey("Orange"));
+	point.Draw(&matrix.Array);
+
+	/* Draw a line */
+	LineClass line(1,0,1,14,coltab.GetColorForKey("Red"));
+	line.Draw(&matrix.Array);
+
+	/* Draw a circle */
+	CircleClass circle(10,10,8,coltab.GetColorForKey("Magenta"));
+	circle.Draw(&matrix.Array);
+
+	/* Draw a rectangle */
+	RectangleClass rect(0,25,5,5,coltab.GetColorForKey("Blue"));
+	rect.Draw(&matrix.Array);
+
+	/* Change the position of the rectangle and draw it */
+	rect.setPosition(9,25);
+	rect.Fill(&matrix.Array);
+
+	rect.setPosition(18,25);
+	rect.Draw(&matrix.Array);
+
+	rect.setPosition(27,25);
+	rect.Fill(&matrix.Array);
+
+	/* Draw a triangle */
+	TriangleClass tri(22,10,14,18,30,18,coltab.GetColorForKey("Green"));
+	tri.Draw(&matrix.Array);
+
+#endif
+
+#ifdef DEMO_2
+
+	int row = 2;
+	int colum = 1;
+
+	/* Create a new matrix */
+	MatrixClass matrix(row,colum);
+
+	/* Create new color table */
+	ColorTableClass coltab;
+
+	/* Add new color "Magenta" and "Orange" */
+	coltab.setNew888Color("Magenta",0xFF,0x00,0xFF);
+	coltab.setNew888Color("Orange",0xFF,0xa5,0x00);
+
+	/* Draw a rectangle */
+	RectangleClass rect(5,5,25,3,coltab.GetColorForKey("Green"));
+	rect.Fill(&matrix.Array);
+
+	/* Change the position of the rectangle and draw it */
+	rect.setPosition(10,10);
+	rect.Fill(&matrix.Array);
+
+	/* Change the position of the rectangle and draw it */
+	rect.setPosition(15,15);
+	rect.Fill(&matrix.Array);
+
+	/* Change the position of the rectangle and draw it */
+	rect.setPosition(20,20);
+	rect.Fill(&matrix.Array);
+
+	/* Change the position of the rectangle and draw it */
+	rect.setPosition(25,25);
+	rect.Fill(&matrix.Array);
+
+
+
+#endif
+
+#ifdef DEMO_3
+
+	int row = 2;
+	int colum = 1;
+
+	/* Create a new matrix */
+	MatrixClass matrix(row,colum);
+
+	/* Create new color table */
+	ColorTableClass coltab;
+
+	/* Add new color "Magenta" and "Orange" */
+	coltab.setNew888Color("Magenta",0xFF,0x00,0xFF);
+	coltab.setNew888Color("Orange",0xFF,0xa5,0x00);
+
+	CircleClass Circle(32,32, 31,coltab.GetColorForKey("Magenta"));
+	Circle.Draw(&matrix.Array);
+
+	/* Draw a rectangle */
+	RectangleClass rect(20,25,24,5,coltab.GetColorForKey("Blue"));
+	rect.Fill(&matrix.Array);
+
+	/* Draw a line */
+	LineClass line1(10,10,31,24,coltab.GetColorForKey("Red"));
+	line1.Draw(&matrix.Array);
+
+	/* Draw a line */
+	LineClass line2(53,10,32,24,coltab.GetColorForKey("Red"));
+	line2.Draw(&matrix.Array);
+
+#endif
+
 
     while(1)
     {
