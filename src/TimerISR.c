@@ -1,9 +1,7 @@
 /******************************************************************************/
 /*! \file TimerISR.c
 ******************************************************************************
-* \brief Short description of the files function
-*
-* Function : More detailed description of the files function
+* \brief Library function for the interrupt
 *
 * Procedures : initISR()
 *
@@ -35,8 +33,12 @@ int Width = 0;
 int Height = 0;
 volatile uint32_t Data = 0;
 volatile uint16_t *Buffer = 0;
-/* ----------------------- module procedure declaration ----------------------*/
 
+/* ****************************************************************************/
+/* End Header : TimerISR.c */
+/* ****************************************************************************/
+
+/* Function to init the interrupt */
 void initISR(int width, int height, uint16_t *dataPtr) {
 
 	Width = width;
@@ -190,8 +192,4 @@ void TIM2_IRQHandler(void){
 }
 /* ****************************************************************************/
 /* End : TIM2_IRQHandler */
-/* ****************************************************************************/
-
-/* ****************************************************************************/
-/* End Header : TimerISR.c */
 /* ****************************************************************************/

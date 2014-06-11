@@ -6,7 +6,7 @@
 /******************************************************************************/
 /*! \file LEDArray.hpp
 ******************************************************************************
-* \brief Short description of the files function
+* \brief Class which holds an array to store a RGB matrix
 *
 * \author meert1,heimg1
 *
@@ -21,13 +21,7 @@
 
 /* --------------------------------- imports ---------------------------------*/
 #include <stdint.h>
-/* ----------------------- module constant declaration -----------------------*/
 
-/* ------------------------- module type declaration -------------------------*/
-
-/* ------------------------- module data declaration -------------------------*/
-
-/* ----------------------- module procedure declaration ----------------------*/
 
 class LEDArrayClass {
 
@@ -43,8 +37,8 @@ public:
 	LEDArrayClass(int newWidth, int newHeight);
 	~LEDArrayClass();
 
-	void setPixel(int x,int y, uint16_t col);
-	uint16_t * getPtr(void);
+	void SetPixel(int x,int y, uint16_t col);
+	uint16_t * GetPtr(void);
 
 };
 /* ****************************************************************************/

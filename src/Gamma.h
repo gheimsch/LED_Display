@@ -8,7 +8,7 @@ extern "C" {
 /******************************************************************************/
 /*! \file Gamma.h
 ******************************************************************************
-* \brief Short description of the files function
+* \brief Helper array for the gamma correction
 *
 * \author meert1,heimg1
 *
@@ -21,13 +21,10 @@ extern "C" {
 /* LED_Display */
 /* ****************************************************************************/
 
-/* --------------------------------- imports ---------------------------------*/
-
-/* ----------------------- module constant declaration -----------------------*/
-
-/* ------------------------- module type declaration -------------------------*/
 
 /* ------------------------- module data declaration -------------------------*/
+
+/* Gamma correction array */
 static const uint8_t  gamma5bit[] = {
   0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
   0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,

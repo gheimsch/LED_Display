@@ -6,7 +6,7 @@
 /******************************************************************************/
 /*! \file CircleClass.hpp
 ******************************************************************************
-* \brief Short description of the files function
+* \brief Class to draw a circle
 *
 * \author meert1,heimg1
 *
@@ -23,13 +23,6 @@
 #include "ShapeClass.hpp"
 #include "LEDArrayClass.hpp"
 #include "ColorClass.hpp"
-/* ----------------------- module constant declaration -----------------------*/
-
-/* ------------------------- module type declaration -------------------------*/
-
-/* ------------------------- module data declaration -------------------------*/
-
-/* ----------------------- module procedure declaration ----------------------*/
 
 class CircleClass : public ShapeClass {
 

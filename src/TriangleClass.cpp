@@ -1,11 +1,7 @@
 /******************************************************************************/
 /*! \file TriangleClass.cpp
 ******************************************************************************
-* \brief Short description of the files function
-*
-* Function : More detailed description of the files function
-*
-* Procedures :
+* \brief Class to draw a triangle
 *
 * \author meert1,heimg1
 *
@@ -25,6 +21,12 @@
 /* ------------------------- module data declaration -------------------------*/
 
 /* ----------------------- module procedure declaration ----------------------*/
+
+/* ****************************************************************************/
+/* End Header : LineClass.cpp */
+/* ****************************************************************************/
+
+/* Constructor of the class */
 TriangleClass::TriangleClass(int newX0, int newY0, int newX1, int newY1, int newX2, int newY2, uint16_t newCol): X1(newX1),Y1(newY1),X2(newX2),Y2(newY2), Col(newCol) {
 
 	Position.X = newX0;
@@ -32,12 +34,13 @@ TriangleClass::TriangleClass(int newX0, int newY0, int newX1, int newY1, int new
 	std::cout << "LineClass created" << std::endl;
 }
 
-
+/* Destructor of the class */
 TriangleClass::~TriangleClass(){
 
 	std::cout << "LineClass destroyed" << std::endl;
 }
 
+/* Draw method of the class */
 void TriangleClass::Draw(LEDArrayClass *ledArray){
 
 	LineClass * line;
@@ -49,6 +52,3 @@ void TriangleClass::Draw(LEDArrayClass *ledArray){
 	line = new LineClass(X2, Y2, Position.X, Position.Y,Col);
 	line->Draw(ledArray);
 }
-/* ****************************************************************************/
-/* End Header : LineClass.cpp */
-/* ****************************************************************************/

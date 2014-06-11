@@ -1,11 +1,7 @@
 /******************************************************************************/
 /*! \file Main.c
 ******************************************************************************
-* \brief Short description of the files function
-*
-* Function : More detailed description of the files function
-*
-* Procedures :
+* \brief Main Function of the project
 *
 * \author meert1,heimg1
 *
@@ -278,7 +274,6 @@ extern "C" void EXTI0_IRQHandler(void);
 /* End Header : Main.c */
 /* ****************************************************************************/
 
-/* Test text von stetter */
 
 /******************************************************************************/
 /* Function: Delay_us */
@@ -326,11 +321,13 @@ void Delay_us(unsigned int us)
 * \date 03.04.2014 File Created
 *
 *******************************************************************************/
-//#define DEMO_1 /* 1 Panel */
-//#define DEMO_2	/* 1 - 2 Panel */
-#define DEMO_3	/* 2 Panel */
 
+/* Define for the demo selection */
+//	#define DEMO_1 /* 1 Panel */
+//	#define DEMO_2	/* 1 - 2 Panel */
+	#define DEMO_3	/* 2 Panel */
 
+/* Main function */
 int main(void)
 {
 	/* Init the GPIO's */
@@ -344,37 +341,34 @@ int main(void)
 	/* Create a new matrix */
 	MatrixClass matrix(row,colum);
 
-	/* Create new color table */
-	ColorTableClass coltab;
-
 	/* Add new color "Magenta" and "Orange" */
-	coltab.setNew888Color("Magenta",0xFF,0x00,0xFF);
-	coltab.setNew888Color("Orange",0xFF,0xa5,0x00);
+	matrix.Coltab.SetNew888Color("Magenta",0xFF,0x00,0xFF);
+	matrix.Coltab.SetNew888Color("Orange",0xFF,0xa5,0x00);
 
 	/* Draw a point */
-	PointClass point(28,4,coltab.GetColorForKey("Orange"));
+	PointClass point(28,4,matrix.Coltab.GetColorForKey("Orange"));
 	point.Draw(&matrix.Array);
 
 	/* Draw a line */
-	LineClass line(1,0,1,14,coltab.GetColorForKey("Red"));
+	LineClass line(1,0,1,14,matrix.Coltab.GetColorForKey("Red"));
 	line.Draw(&matrix.Array);
 
 	/* Draw a circle */
-	CircleClass circle(10,10,8,coltab.GetColorForKey("Magenta"));
+	CircleClass circle(10,10,8,matrix.Coltab.GetColorForKey("Magenta"));
 	circle.Draw(&matrix.Array);
 
 	/* Draw a rectangle */
-	RectangleClass rect(0,25,5,5,coltab.GetColorForKey("Blue"));
+	RectangleClass rect(0,25,5,5,matrix.Coltab.GetColorForKey("Blue"));
 	rect.Draw(&matrix.Array);
 
 	/* Change the position of the rectangle and draw it */
-	rect.setPosition(9,25);
+	rect.SetPosition(9,25);
 	rect.Fill(&matrix.Array);
 
-	rect.setPosition(18,25);
+	rect.SetPosition(18,25);
 	rect.Draw(&matrix.Array);
 
-	rect.setPosition(27,25);
+	rect.SetPosition(27,25);
 	rect.Fill(&matrix.Array);
 
 	/* Draw a triangle */
@@ -391,15 +385,12 @@ int main(void)
 	/* Create a new matrix */
 	MatrixClass matrix(row,colum);
 
-	/* Create new color table */
-	ColorTableClass coltab;
-
 	/* Add new color "Magenta" and "Orange" */
-	coltab.setNew888Color("Magenta",0xFF,0x00,0xFF);
-	coltab.setNew888Color("Orange",0xFF,0xa5,0x00);
+	matrix.Coltab.SetNew888Color("Magenta",0xFF,0x00,0xFF);
+	matrix.Coltab.SetNew888Color("Orange",0xFF,0xa5,0x00);
 
 	/* Draw a rectangle */
-	RectangleClass rect(5,5,25,3,coltab.GetColorForKey("Green"));
+	RectangleClass rect(5,5,25,3,matrix.Coltab.GetColorForKey("Green"));
 	rect.Fill(&matrix.Array);
 
 	/* Change the position of the rectangle and draw it */
@@ -430,26 +421,24 @@ int main(void)
 	/* Create a new matrix */
 	MatrixClass matrix(row,colum);
 
-	/* Create new color table */
-	ColorTableClass coltab;
 
 	/* Add new color "Magenta" and "Orange" */
-	coltab.setNew888Color("Magenta",0xFF,0x00,0xFF);
-	coltab.setNew888Color("Orange",0xFF,0xa5,0x00);
+	matrix.Coltab.SetNew888Color("Magenta",0xFF,0x00,0xFF);
+	matrix.Coltab.SetNew888Color("Orange",0xFF,0xa5,0x00);
 
-	CircleClass Circle(32,32, 31,coltab.GetColorForKey("Magenta"));
+	CircleClass Circle(32,32, 31,matrix.Coltab.GetColorForKey("Magenta"));
 	Circle.Draw(&matrix.Array);
 
 	/* Draw a rectangle */
-	RectangleClass rect(20,25,24,5,coltab.GetColorForKey("Blue"));
+	RectangleClass rect(20,25,24,5,matrix.Coltab.GetColorForKey("Blue"));
 	rect.Fill(&matrix.Array);
 
 	/* Draw a line */
-	LineClass line1(10,10,31,24,coltab.GetColorForKey("Red"));
+	LineClass line1(10,10,31,24,matrix.Coltab.GetColorForKey("Red"));
 	line1.Draw(&matrix.Array);
 
 	/* Draw a line */
-	LineClass line2(53,10,32,24,coltab.GetColorForKey("Red"));
+	LineClass line2(53,10,32,24,matrix.Coltab.GetColorForKey("Red"));
 	line2.Draw(&matrix.Array);
 
 #endif
@@ -463,22 +452,26 @@ int main(void)
 /* ****************************************************************************/
 /* End : main */
 /* ****************************************************************************/
+
+/* User button interrupt function */
 void EXTI0_IRQHandler(){
 
-		if(picctr == 0){
+	/* If the button was pressed, change the picture */
+	if(picctr == 0){
 
-			PrinterClass print(1,1,Picture);
-			picctr++;
-		}
-		else if(picctr ==  1){
+		PrinterClass print(1,1,Picture);
+		picctr++;
+	}
+	else if(picctr ==  1){
 
-			PrinterClass print(1,1,Picture1);
-			picctr++;
-		}
-		else{
-			picctr = 0;
-		}
+		PrinterClass print(1,1,Picture1);
+		picctr++;
+	}
+	else{
+		picctr = 0;
+	}
 
+	/* Clear the interrupt bit */
 	EXTI_ClearITPendingBit(EXTI_Line0);
 }
 

@@ -1,11 +1,7 @@
 /******************************************************************************/
 /*! \file LineClass.cpp
 ******************************************************************************
-* \brief Short description of the files function
-*
-* Function : More detailed description of the files function
-*
-* Procedures :
+* \brief Class to draw a line in a array
 *
 * \author meert1,heimg1
 *
@@ -24,6 +20,12 @@
 /* ------------------------- module data declaration -------------------------*/
 
 /* ----------------------- module procedure declaration ----------------------*/
+
+/* ****************************************************************************/
+/* End Header : LineClass.cpp */
+/* ****************************************************************************/
+
+/* Constructor of the class */
 LineClass::LineClass(int newXStart, int newYStart, int newXEnd, int newYEnd, uint16_t newCol): XEnd(newXEnd),YEnd(newYEnd), Col(newCol) {
 
 	Position.X = newXStart;
@@ -31,12 +33,13 @@ LineClass::LineClass(int newXStart, int newYStart, int newXEnd, int newYEnd, uin
 	std::cout << "LineClass created" << std::endl;
 }
 
-
+/* Destructor of the class */
 LineClass::~LineClass(){
 
 	std::cout << "LineClass destroyed" << std::endl;
 }
 
+/* Draw method of the class */
 void LineClass::Draw(LEDArrayClass *ledArray){
 
 	volatile int x,y,t, dx, dy, incx, incy, pdx, pdy, ddx, ddy, es, el, err;
@@ -70,7 +73,7 @@ void LineClass::Draw(LEDArrayClass *ledArray){
 	   x = Position.X;
 	   y = Position.Y;
 	   err = el/2;
-	   ledArray->setPixel(x,y,Col);
+	   ledArray->SetPixel(x,y,Col);
 
 	// Pixel berechnen
 	   for(t=0; t<el; ++t) // t zaehlt die Pixel, el ist auch Anzahl
@@ -90,11 +93,8 @@ void LineClass::Draw(LEDArrayClass *ledArray){
 	          x += pdx;
 	          y += pdy;
 	      }
-	      ledArray->setPixel(x,y,Col);
+	      ledArray->SetPixel(x,y,Col);
 	   }
 
 
 }
-/* ****************************************************************************/
-/* End Header : LineClass.cpp */
-/* ****************************************************************************/

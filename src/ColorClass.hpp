@@ -6,7 +6,7 @@
 /******************************************************************************/
 /*! \file ColorClass.hpp
 ******************************************************************************
-* \brief Short description of the files function
+* \brief Color Class to store and load defined colors
 *
 * \author meert1,heimg1
 *
@@ -21,13 +21,7 @@
 
 /* --------------------------------- imports ---------------------------------*/
 #include <stdint.h>
-/* ----------------------- module constant declaration -----------------------*/
 
-/* ------------------------- module type declaration -------------------------*/
-
-/* ------------------------- module data declaration -------------------------*/
-
-/* ----------------------- module procedure declaration ----------------------*/
 
 class ColorClass {
 
@@ -42,11 +36,11 @@ public:
 	ColorClass(unsigned char newRed, unsigned char newGreen, unsigned char newBlue);
 	~ColorClass();
 
-	void setColor(uint16_t red, uint16_t green, uint16_t blue);
-	uint16_t getColor(void);
-	uint16_t getHSV2RGB(long hue, uint8_t sat, uint8_t val);
-	void setColor888(unsigned char red,unsigned char green,unsigned char blue);
-	void setColor555(unsigned char red,unsigned char green,unsigned char blue);
+	void SetColor(uint16_t red, uint16_t green, uint16_t blue);
+	uint16_t GetColor(void);
+	uint16_t GetHSV2RGB(long hue, uint8_t sat, uint8_t val);
+	void SetColor888(unsigned char red,unsigned char green,unsigned char blue);
+	void SetColor555(unsigned char red,unsigned char green,unsigned char blue);
 };
 /* ****************************************************************************/
 /* End Header : ColorClass.hpp */

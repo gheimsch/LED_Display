@@ -1,11 +1,7 @@
 /******************************************************************************/
 /*! \file EllipseClass.cpp
 ******************************************************************************
-* \brief Short description of the files function
-*
-* Function : More detailed description of the files function
-*
-* Procedures :
+* \brief Class to draw an elipse
 *
 * \author meert1,heimg1
 *
@@ -24,6 +20,12 @@
 /* ------------------------- module data declaration -------------------------*/
 
 /* ----------------------- module procedure declaration ----------------------*/
+
+/* ****************************************************************************/
+/* End Header : EllipseClass.cpp */
+/* ****************************************************************************/
+
+/* Constructor of the class */
 EllipseClass::EllipseClass(int newX, int newY, int newA, int newB, uint16_t newCol) : A(newA), B(newB),Col(newCol){
 
 	Position.X = newX;
@@ -32,12 +34,13 @@ EllipseClass::EllipseClass(int newX, int newY, int newA, int newB, uint16_t newC
 	std::cout << "LineClass created" << std::endl;
 }
 
-
+/* Destructor of the class */
 EllipseClass::~EllipseClass(){
 
 	std::cout << "LineClass destroyed" << std::endl;
 }
 
+/* Draw method of the class */
 void EllipseClass::Draw(LEDArrayClass *ledArray){
 
 	   char dx = 0, dy = B; /* im I. Quadranten von links oben nach rechts unten */
@@ -45,10 +48,10 @@ void EllipseClass::Draw(LEDArrayClass *ledArray){
 	   int err = b2-(2*B-1)*a2, e2; /* Fehler im 1. Schritt */
 
 	   do {
-	       ledArray->setPixel(Position.X + dx,Position.Y + dy,Col);/* I. Quadrant */
-	       ledArray->setPixel(Position.X - dx,Position.Y + dy,Col);/* II. Quadrant */
-	       ledArray->setPixel(Position.X - dx,Position.Y - dy,Col);/* III. Quadrant */
-	       ledArray->setPixel(Position.X + dx,Position.Y - dy,Col);/* IV. Quadrant */
+	       ledArray->SetPixel(Position.X + dx,Position.Y + dy,Col);/* I. Quadrant */
+	       ledArray->SetPixel(Position.X - dx,Position.Y + dy,Col);/* II. Quadrant */
+	       ledArray->SetPixel(Position.X - dx,Position.Y - dy,Col);/* III. Quadrant */
+	       ledArray->SetPixel(Position.X + dx,Position.Y - dy,Col);/* IV. Quadrant */
 
 	       if(dx == 150){
 	    	   dx = 0;
@@ -67,10 +70,7 @@ void EllipseClass::Draw(LEDArrayClass *ledArray){
 	   } while (dy >= 0);
 
 	   while (dx++ < A) { /* fehlerhafter Abbruch bei flachen Ellipsen (b=1) */
-		   ledArray->setPixel(Position.X + dx,Position.Y,Col);/* -> Spitze der Ellipse vollenden */
-		   ledArray->setPixel(Position.X - dx,Position.Y,Col);
+		   ledArray->SetPixel(Position.X + dx,Position.Y,Col);/* -> Spitze der Ellipse vollenden */
+		   ledArray->SetPixel(Position.X - dx,Position.Y,Col);
 	   }
 }
-/* ****************************************************************************/
-/* End Header : EllipseClass.cpp */
-/* ****************************************************************************/

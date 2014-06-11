@@ -6,7 +6,7 @@
 /******************************************************************************/
 /*! \file ColorTableClass.hpp
 ******************************************************************************
-* \brief Short description of the files function
+* \brief Class with a list of colors, defined by the user
 *
 * \author meert1,heimg1
 *
@@ -24,13 +24,7 @@
 #include <map>
 
 #include "ColorClass.hpp"
-/* ----------------------- module constant declaration -----------------------*/
 
-/* ------------------------- module type declaration -------------------------*/
-
-/* ------------------------- module data declaration -------------------------*/
-
-/* ----------------------- module procedure declaration ----------------------*/
 
 class ColorTableClass {
 
@@ -43,8 +37,8 @@ public:
 
 	void PrintColors(void);
 	uint16_t GetColorForKey(std::string key);
-	void setNew888Color(std::string name, uint8_t red,uint8_t green,uint8_t blue);
-	void setNew555Color(std::string name, uint8_t red,uint8_t green,uint8_t blue);
+	void SetNew888Color(std::string name, uint8_t red,uint8_t green,uint8_t blue);
+	void SetNew555Color(std::string name, uint8_t red,uint8_t green,uint8_t blue);
 
 };
 /* ****************************************************************************/

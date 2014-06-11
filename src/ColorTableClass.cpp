@@ -1,11 +1,7 @@
 /******************************************************************************/
 /*! \file ColorTableClass.cpp
 ******************************************************************************
-* \brief Short description of the files function
-*
-* Function : More detailed description of the files function
-*
-* Procedures :
+* \brief Class with a list of colors, defined by the user
 *
 * \author meert1,heimg1
 *
@@ -23,6 +19,7 @@
 
 /* ------------------------- module data declaration -------------------------*/
 
+/* A map and it's iterator, used to store color classes */
 std::map<std::string,ColorClass*> colorMap;
 std::map<std::string,ColorClass*>::iterator mapIterator;
 
@@ -32,6 +29,8 @@ std::map<std::string,ColorClass*>::iterator mapIterator;
 /* End Header : ColorTableClass.cpp */
 /* ****************************************************************************/
 
+
+/* Constructor of the class */
 ColorTableClass::ColorTableClass(){
 
 	/* Create a few standart colors */
@@ -44,7 +43,7 @@ ColorTableClass::ColorTableClass(){
 	std::cout << "Color table created" << std::endl;
 }
 
-
+/* Destructor of the class */
 ColorTableClass::~ColorTableClass(){
 
 	for( mapIterator = colorMap.begin(); mapIterator!=colorMap.end(); ++mapIterator)
@@ -54,7 +53,7 @@ ColorTableClass::~ColorTableClass(){
 	std::cout << "Color table destroyed" << std::endl;
 }
 
-
+/* Helper method to write all stored colors to the terminal */
 void ColorTableClass::PrintColors(void)
 {
 	/* Print the colors in the color table */
@@ -62,21 +61,21 @@ void ColorTableClass::PrintColors(void)
 
 	for( mapIterator = colorMap.begin(); mapIterator!=colorMap.end(); ++mapIterator)
 	{
-		std::cout << (*mapIterator).first << ": " << (*mapIterator).second->getColor() << std::endl;
+		std::cout << (*mapIterator).first << ": " << (*mapIterator).second->GetColor() << std::endl;
 	}
 
 }
 
-
+/* Method to get a RGB value for a given key */
 uint16_t ColorTableClass::GetColorForKey(std::string key)
 {
 	if(colorMap.find(key) != colorMap.end())
 	{
 		/* Print the color */
-		std::cout << "Color of " << key << " = " << colorMap[key]->getColor() << std::endl;
+		std::cout << "Color of " << key << " = " << colorMap[key]->GetColor() << std::endl;
 
 		/* Return the color with the given key */
-		return colorMap[key]->getColor();
+		return colorMap[key]->GetColor();
 	}
 	else
 	{
@@ -89,14 +88,15 @@ uint16_t ColorTableClass::GetColorForKey(std::string key)
 
 }
 
-
-void ColorTableClass::setNew888Color(std::string name, uint8_t red,uint8_t green,uint8_t blue)
+/* This Method stores a new true color with the given name in the map */
+void ColorTableClass::SetNew888Color(std::string name, uint8_t red,uint8_t green,uint8_t blue)
 {
 	colorMap[name] = new ColorClass(red,green,blue);
 }
 
-void ColorTableClass::setNew555Color(std::string name, uint8_t red,uint8_t green,uint8_t blue)
+/* This Method stores a new 555 bit color with the given name in the map */
+void ColorTableClass::SetNew555Color(std::string name, uint8_t red,uint8_t green,uint8_t blue)
 {
 	colorMap[name] = new ColorClass();
-	colorMap[name]->setColor555(red,green,blue);
+	colorMap[name]->SetColor555(red,green,blue);
 }

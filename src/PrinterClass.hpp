@@ -6,7 +6,7 @@
 /******************************************************************************/
 /*! \file PrinterClass.hpp
 ******************************************************************************
-* \brief Short description of the files function
+* \brief Class to handle the HW-interface
 *
 * \author meert1,heimg1
 *
@@ -21,13 +21,7 @@
 
 /* --------------------------------- imports ---------------------------------*/
 #include <stdint.h>
-/* ----------------------- module constant declaration -----------------------*/
 
-/* ------------------------- module type declaration -------------------------*/
-
-/* ------------------------- module data declaration -------------------------*/
-
-/* ----------------------- module procedure declaration ----------------------*/
 
 class PrinterClass {
 
@@ -42,7 +36,7 @@ public:
 	PrinterClass(int newWidth, int newHight, uint16_t *newDataPtr);
 	~PrinterClass();
 
-	void setDataPtr(uint16_t *ptr);
+	void SetDataPtr(uint16_t *ptr);
 
 };
 /* ****************************************************************************/

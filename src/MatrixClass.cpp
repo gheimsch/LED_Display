@@ -1,11 +1,7 @@
 /******************************************************************************/
 /*! \file MatrixClass.cpp
 ******************************************************************************
-* \brief Short description of the files function
-*
-* Function : More detailed description of the files function
-*
-* Procedures :
+* \brief Class which represents a RGB matrix
 *
 * \author meert1,heimg1
 *
@@ -24,22 +20,25 @@
 /* ------------------------- module data declaration -------------------------*/
 
 /* ----------------------- module procedure declaration ----------------------*/
+
+/* ****************************************************************************/
+/* End Header : MatrixClass.cpp */
+/* ****************************************************************************/
+
+/* Constructor of the class */
 MatrixClass::MatrixClass(int newWidth, int newHeight)
 : Array(newWidth, newHeight)
 {
 
 	Width = newWidth;
 	Height = newHeight;
-	PrinterClass printer(Width,Height,Array.getPtr());
+	PrinterClass printer(Width,Height,Array.GetPtr());
 
 	std::cout << "LineClass created" << std::endl;
 }
 
-
+/* Destructor of the class */
 MatrixClass::~MatrixClass(){
 
 	std::cout << "LineClass destroyed" << std::endl;
 }
-/* ****************************************************************************/
-/* End Header : MatrixClass.cpp */
-/* ****************************************************************************/

@@ -1,11 +1,7 @@
 /******************************************************************************/
 /*! \file CircleClass.cpp
 ******************************************************************************
-* \brief Short description of the files function
-*
-* Function : More detailed description of the files function
-*
-* Procedures :
+* \brief Class to draw a circle
 *
 * \author meert1,heimg1
 *
@@ -25,6 +21,12 @@
 /* ------------------------- module data declaration -------------------------*/
 
 /* ----------------------- module procedure declaration ----------------------*/
+
+/* ****************************************************************************/
+/* End Header : CircleClass.cpp */
+/* ****************************************************************************/
+
+/* Constructor of the class */
 CircleClass::CircleClass(int newX, int newY, int newRad, uint16_t newCol) : Rad(newRad){
 
 	Position.X = newX;
@@ -34,45 +36,42 @@ CircleClass::CircleClass(int newX, int newY, int newRad, uint16_t newCol) : Rad(
 	std::cout << "LineClass created" << std::endl;
 }
 
-
+/* Destructor of the class */
 CircleClass::~CircleClass(){
 
 	std::cout << "LineClass destroyed" << std::endl;
 }
 
+/* Draw method of the class */
 void CircleClass::Draw(LEDArrayClass *ledArray){
 
-		int sw=0, y=0, x=0;
-		signed char d;
+	int sw=0, y=0, x=0;
+	signed char d;
 
-		d = Position.Y - Position.X;
-		y = Rad;
-		sw = 2 - 2 * Rad;
-		while (x <= y) {
+	d = Position.Y - Position.X;
+	y = Rad;
+	sw = 2 - 2 * Rad;
+	while (x <= y) {
 
-			ledArray->setPixel(Position.X + x,Position.Y + y,Col);
-			ledArray->setPixel(Position.X + x,Position.Y - y,Col);
+		ledArray->SetPixel(Position.X + x,Position.Y + y,Col);
+		ledArray->SetPixel(Position.X + x,Position.Y - y,Col);
 
-			ledArray->setPixel(Position.X - x,Position.Y + y,Col);
-			ledArray->setPixel(Position.X - x,Position.Y - y,Col);
+		ledArray->SetPixel(Position.X - x,Position.Y + y,Col);
+		ledArray->SetPixel(Position.X - x,Position.Y - y,Col);
 
-			ledArray->setPixel(Position.Y + y - d,Position.Y + x,Col);
-			ledArray->setPixel(Position.Y + y - d,Position.Y - x,Col);
-			ledArray->setPixel(Position.Y - y - d,Position.Y + x,Col);
-			ledArray->setPixel(Position.Y - y - d,Position.Y - x,Col);
+		ledArray->SetPixel(Position.Y + y - d,Position.Y + x,Col);
+		ledArray->SetPixel(Position.Y + y - d,Position.Y - x,Col);
+		ledArray->SetPixel(Position.Y - y - d,Position.Y + x,Col);
+		ledArray->SetPixel(Position.Y - y - d,Position.Y - x,Col);
 
-			if (sw < 0)
-				sw += (4 * x + 6);
-			else {
+		if (sw < 0)
+			sw += (4 * x + 6);
+		else {
 
-				sw += (4 * (x - y) + 10);
-				y--;
-			}
-
-			x++;
+			sw += (4 * (x - y) + 10);
+			y--;
 		}
 
+		x++;
+	}
 }
-/* ****************************************************************************/
-/* End Header : CircleClass.cpp */
-/* ****************************************************************************/

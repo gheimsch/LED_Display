@@ -1,11 +1,7 @@
 /******************************************************************************/
 /*! \file RectangleClass.cpp
 ******************************************************************************
-* \brief Short description of the files function
-*
-* Function : More detailed description of the files function
-*
-* Procedures :
+* \brief Class to draw a rectangle
 *
 * \author meert1,heimg1
 *
@@ -25,6 +21,12 @@
 /* ------------------------- module data declaration -------------------------*/
 
 /* ----------------------- module procedure declaration ----------------------*/
+
+/* ****************************************************************************/
+/* End Header : RectangleClass.cpp */
+/* ****************************************************************************/
+
+/* Constructor of the class */
 RectangleClass::RectangleClass(int newX, int newY, int newWidth, int newHeight, uint16_t newCol) : Width(newWidth), Height(newHeight), Col(newCol){
 
 	Position.X = newX;
@@ -32,12 +34,13 @@ RectangleClass::RectangleClass(int newX, int newY, int newWidth, int newHeight, 
 	std::cout << "LineClass created" << std::endl;
 }
 
-
+/* Destructor of the class */
 RectangleClass::~RectangleClass(){
 
 	std::cout << "LineClass destroyed" << std::endl;
 }
 
+/* Draw method of the class */
 void RectangleClass::Draw(LEDArrayClass *ledArray){
 
 	LineClass line1(Position.X,Position.Y,Position.X+Width-1,Position.Y,Col);
@@ -51,6 +54,7 @@ void RectangleClass::Draw(LEDArrayClass *ledArray){
 
 }
 
+/* Fill method of the class */
 void RectangleClass::Fill(LEDArrayClass *ledArray){
 
 	LineClass * line;
@@ -65,6 +69,3 @@ void RectangleClass::Fill(LEDArrayClass *ledArray){
 		line->Draw(ledArray);
 	}
 }
-/* ****************************************************************************/
-/* End Header : RectangleClass.cpp */
-/* ****************************************************************************/

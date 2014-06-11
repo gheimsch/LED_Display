@@ -6,7 +6,7 @@
 /******************************************************************************/
 /*! \file LineClass.hpp
 ******************************************************************************
-* \brief Short description of the files function
+* \brief Class to draw a line in a array
 *
 * \author meert1,heimg1
 *
@@ -21,13 +21,7 @@
 
 /* --------------------------------- imports ---------------------------------*/
 #include "ShapeClass.hpp"
-/* ----------------------- module constant declaration -----------------------*/
 
-/* ------------------------- module type declaration -------------------------*/
-
-/* ------------------------- module data declaration -------------------------*/
-
-/* ----------------------- module procedure declaration ----------------------*/
 
 class LineClass : public ShapeClass {
 

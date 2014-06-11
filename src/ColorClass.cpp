@@ -1,11 +1,7 @@
 /******************************************************************************/
 /*! \file ColorClass.cpp
 ******************************************************************************
-* \brief Short description of the files function
-*
-* Function : More detailed description of the files function
-*
-* Procedures :
+* \brief Color Class to store and load defined colors
 *
 * \author meert1,heimg1
 *
@@ -29,12 +25,13 @@ unsigned char Reverse5Bit[32] = { 0x00, 0x10, 0x08, 0x18, 0x04, 0x14, 0x0C, 0x1C
 
 /* ----------------------- module procedure declaration ----------------------*/
 
-uint16_t setColor888(unsigned char R,unsigned char G,unsigned char B);
+uint16_t SetColor888(unsigned char R,unsigned char G,unsigned char B);
 
 /* ****************************************************************************/
 /* End Header : ColorClass.cpp */
 /* ****************************************************************************/
 
+/* Constructor of the class */
 ColorClass::ColorClass()
 {
 	Red = 0;
@@ -43,7 +40,7 @@ ColorClass::ColorClass()
 	std::cout << "ColorClass created" << std::endl;
 }
 
-
+/* Constructor 2 of the class */
 ColorClass::ColorClass(unsigned char newRed, unsigned char newGreen, unsigned char newBlue){
 
 	Red = newRed>>3;
@@ -53,19 +50,21 @@ ColorClass::ColorClass(unsigned char newRed, unsigned char newGreen, unsigned ch
 	std::cout << "ColorClass created" << std::endl;
 }
 
-
+/* Destructor of the class */
 ColorClass::~ColorClass(){
 
 	std::cout << "ColorClass destroyed" << std::endl;
 }
 
-uint16_t ColorClass::getColor(void)
-{
+/* Method to get the color value */
+uint16_t ColorClass::GetColor(void){
+
 	return (((Reverse5Bit[Red]) | ((Reverse5Bit[Green]) << 5)
 				| ((Reverse5Bit[Blue]) << 10)));
 }
 
-uint16_t ColorClass::getHSV2RGB(long hue, uint8_t sat, uint8_t val) {
+/* Convert a HSV to a RGB value */
+uint16_t ColorClass::GetHSV2RGB(long hue, uint8_t sat, uint8_t val) {
 
   uint8_t r, g, b, lo;
   uint16_t s1, v1;
@@ -103,57 +102,18 @@ uint16_t ColorClass::getHSV2RGB(long hue, uint8_t sat, uint8_t val) {
 }
 
 
-/******************************************************************************/
-/* Function: setColor888 */
-/******************************************************************************/
-/*! \brief Convert and set a 888 color to a 555 color
-*
-* \param[in] parameter1 8bit red value
-* \param[in] parameter2 8bit green value
-* \param[in] parameter2 8bit blue value
-*
-* \return None
-*
-* \author meert1,heimg1
-*
-* \version 0.0.1
-*
-* \date 03.04.2014 File Created
-*
-*******************************************************************************/
-void ColorClass::setColor888(unsigned char red,unsigned char green,unsigned char blue){
+/* Method to set a true color value */
+void ColorClass::SetColor888(unsigned char red,unsigned char green,unsigned char blue){
+
 	Red = red>>3;
 	Green = green>>3;
 	Blue = blue>>3;
 }
-/* ****************************************************************************/
-/* End : setColor888 */
-/* ****************************************************************************/
 
+/* Method to set a 5 bit per color channel value */
+void ColorClass::SetColor555(unsigned char red,unsigned char green,unsigned char blue){
 
-/******************************************************************************/
-/* Function: setColor555 */
-/******************************************************************************/
-/*! \brief Set a 5 bit color
-*
-* \param[in] parameter1 5bit red value
-* \param[in] parameter2 5bit green value
-* \param[in] parameter2 5bit blue value
-*
-* \return None
-*
-* \author meert1,heimg1
-*
-* \version 0.0.1
-*
-* \date 03.04.2014 File Created
-*
-*******************************************************************************/
-void ColorClass::setColor555(unsigned char red,unsigned char green,unsigned char blue){
 	Red = red & 0x1F;
 	Green = green & 0x1F;
 	Blue = blue & 0x1F;
 }
-/* ****************************************************************************/
-/* End : setColor555 */
-/* ****************************************************************************/

@@ -6,7 +6,7 @@
 /******************************************************************************/
 /*! \file ShapeClass.hpp
 ******************************************************************************
-* \brief Short description of the files function
+* \brief Parent class of all geometric objects
 *
 * \author meert1,heimg1
 *
@@ -22,17 +22,7 @@
 /* --------------------------------- imports ---------------------------------*/
 #include "PositionClass.hpp"
 #include "LEDArrayClass.hpp"
-/* ----------------------- module constant declaration -----------------------*/
 
-/* ------------------------- module type declaration -------------------------*/
-
-/* ------------------------- module data declaration -------------------------*/
-
-/* ----------------------- module procedure declaration ----------------------*/
-
-/* ****************************************************************************/
-/* End Header : ShapeClass.hpp */
-/* ****************************************************************************/
 
 class ShapeClass {
 
@@ -48,8 +38,12 @@ public:
 
 	void Draw();
 	void Fill();
-	void setPosition(int newXPos, int newYPos);
+	void SetPosition(int newXPos, int newYPos);
 };
+
+/* ****************************************************************************/
+/* End Header : ShapeClass.hpp */
+/* ****************************************************************************/
 
 # endif
 #endif /* SHAPE_CLASS_HPP_ */

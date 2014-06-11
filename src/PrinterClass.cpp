@@ -1,11 +1,7 @@
 /******************************************************************************/
 /*! \file PrinterClass.cpp
 ******************************************************************************
-* \brief Short description of the files function
-*
-* Function : More detailed description of the files function
-*
-* Procedures :
+* \brief Class to handle the HW-interface
 *
 * \author meert1,heimg1
 *
@@ -25,6 +21,12 @@
 /* ------------------------- module data declaration -------------------------*/
 
 /* ----------------------- module procedure declaration ----------------------*/
+
+/* ****************************************************************************/
+/* End Header : PrinterClass.cpp */
+/* ****************************************************************************/
+
+/* Constructor of the class */
 PrinterClass::PrinterClass(int newWidth, int newHight, uint16_t *newDataPtr){
 
 	Width = newWidth;
@@ -35,15 +37,13 @@ PrinterClass::PrinterClass(int newWidth, int newHight, uint16_t *newDataPtr){
 	std::cout << "LineClass created" << std::endl;
 }
 
-
+/* Destructor of the class */
 PrinterClass::~PrinterClass(){
 
 	std::cout << "LineClass destroyed" << std::endl;
 }
 
-void PrinterClass::setDataPtr(uint16_t *ptr){
+/* Method to set a pointer of a LED array */
+void PrinterClass::SetDataPtr(uint16_t *ptr){
 	DataPtr = ptr;
 }
-/* ****************************************************************************/
-/* End Header : PrinterClass.cpp */
-/* ****************************************************************************/

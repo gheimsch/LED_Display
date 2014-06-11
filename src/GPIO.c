@@ -1,9 +1,7 @@
 /******************************************************************************/
 /*! \file GPIO.c
 ******************************************************************************
-* \brief Short description of the files function
-*
-* Function : More detailed description of the files function
+* \brief C functions to init the GPIO's of the HW
 *
 * Procedures : initGPIO()
 *
@@ -22,10 +20,8 @@
 #include "stm32f4xx_gpio.h"
 #include "stm32f4xx_rcc.h"
 
-/* ------------------------- module data declaration -------------------------*/
 
-/* ----------------------- module procedure declaration ----------------------*/
-
+/* Function to init the GPIO's */
 void initGPIO(void){
 
     /* Initialisiere pins */

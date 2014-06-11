@@ -6,7 +6,7 @@
 /******************************************************************************/
 /*! \file EllipseClass.hpp
 ******************************************************************************
-* \brief Short description of the files function
+* \brief Class to draw an elipse
 *
 * \author meert1,heimg1
 *
@@ -22,13 +22,7 @@
 /* --------------------------------- imports ---------------------------------*/
 #include "ShapeClass.hpp"
 #include "LEDArrayClass.hpp"
-/* ----------------------- module constant declaration -----------------------*/
 
-/* ------------------------- module type declaration -------------------------*/
-
-/* ------------------------- module data declaration -------------------------*/
-
-/* ----------------------- module procedure declaration ----------------------*/
 
 class EllipseClass : public ShapeClass {
 

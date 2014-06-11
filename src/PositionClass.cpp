@@ -1,11 +1,7 @@
 /******************************************************************************/
 /*! \file PositionClass.cpp
 ******************************************************************************
-* \brief Short description of the files function
-*
-* Function : More detailed description of the files function
-*
-* Procedures :
+* \brief Class to handle a position
 *
 * \author meert1,heimg1
 *
@@ -25,21 +21,25 @@
 /* ------------------------- module data declaration -------------------------*/
 
 /* ----------------------- module procedure declaration ----------------------*/
+
+/* ****************************************************************************/
+/* End Header : PositionClass.cpp */
+/* ****************************************************************************/
+
+/* Constructor of the class */
 PositionClass::PositionClass(){
 
 	std::cout << "LineClass created" << std::endl;
 }
 
+/* Destructor 2 of the class */
 PositionClass::PositionClass(int newX, int newY) : X(newX), Y(newY){
 
 	std::cout << "LineClass created" << std::endl;
 }
 
-
+/* Destructor of the class */
 PositionClass::~PositionClass(){
 
 	std::cout << "LineClass destroyed" << std::endl;
 }
-/* ****************************************************************************/
-/* End Header : PositionClass.cpp */
-/* ****************************************************************************/

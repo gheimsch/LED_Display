@@ -1,11 +1,7 @@
 /******************************************************************************/
 /*! \file PointClass.cpp
 ******************************************************************************
-* \brief Short description of the files function
-*
-* Function : More detailed description of the files function
-*
-* Procedures :
+* \brief Class to draw a point
 *
 * \author meert1,heimg1
 *
@@ -24,6 +20,12 @@
 /* ------------------------- module data declaration -------------------------*/
 
 /* ----------------------- module procedure declaration ----------------------*/
+
+/* ****************************************************************************/
+/* End Header : PointClass.cpp */
+/* ****************************************************************************/
+
+/* Constructor of the class */
 PointClass::PointClass(int newX, int newY, uint16_t newCol) : Col(newCol){
 
 	Position.X = newX;
@@ -31,16 +33,14 @@ PointClass::PointClass(int newX, int newY, uint16_t newCol) : Col(newCol){
 
 }
 
-
+/* Destructor of the class */
 PointClass::~PointClass(){
 
 	std::cout << "LineClass destroyed" << std::endl;
 }
 
+/* Draw method of the class */
 void PointClass::Draw(LEDArrayClass *ledArray){
 
-	ledArray->setPixel(Position.X,Position.Y,Col);
+	ledArray->SetPixel(Position.X,Position.Y,Col);
 }
-/* ****************************************************************************/
-/* End Header : PointClass.cpp */
-/* ****************************************************************************/

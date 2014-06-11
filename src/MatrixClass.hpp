@@ -6,7 +6,7 @@
 /******************************************************************************/
 /*! \file MatrixClass.hpp
 ******************************************************************************
-* \brief Short description of the files function
+* \brief Class which represents a RGB matrix
 *
 * \author meert1,heimg1
 *
@@ -22,22 +22,18 @@
 /* --------------------------------- imports ---------------------------------*/
 #include "LEDArrayClass.hpp"
 #include "PrinterClass.hpp"
-/* ----------------------- module constant declaration -----------------------*/
-
-/* ------------------------- module type declaration -------------------------*/
-
-/* ------------------------- module data declaration -------------------------*/
-
-/* ----------------------- module procedure declaration ----------------------*/
+#include "ColorTableClass.hpp"
 
 class MatrixClass {
 
 	friend class ShapeClass;
 	//friend class LEDArrayClass;
-   // Data
+    // Data
 	int Height;
 	int Width;
-	//Colortable
+
+public:
+	ColorTableClass Coltab;
 
    // Methods
 public:

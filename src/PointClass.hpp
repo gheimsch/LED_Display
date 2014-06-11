@@ -6,7 +6,7 @@
 /******************************************************************************/
 /*! \file PointClass.hpp
 ******************************************************************************
-* \brief Short description of the files function
+* \brief Class to draw a point
 *
 * \author meert1,heimg1
 *
@@ -22,13 +22,7 @@
 /* --------------------------------- imports ---------------------------------*/
 #include "ShapeClass.hpp"
 #include "LEDArrayClass.hpp"
-/* ----------------------- module constant declaration -----------------------*/
 
-/* ------------------------- module type declaration -------------------------*/
-
-/* ------------------------- module data declaration -------------------------*/
-
-/* ----------------------- module procedure declaration ----------------------*/
 
 class PointClass : public ShapeClass{
 

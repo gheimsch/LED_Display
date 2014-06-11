@@ -1,11 +1,7 @@
 /******************************************************************************/
 /*! \file ShapeClass.cpp
 ******************************************************************************
-* \brief Short description of the files function
-*
-* Function : More detailed description of the files function
-*
-* Procedures :
+* \brief Parent class of all geometric objects
 *
 * \author meert1,heimg1
 *
@@ -26,11 +22,17 @@
 
 /* ----------------------- module procedure declaration ----------------------*/
 
+/* ****************************************************************************/
+/* End Header : ShapeClass.cpp */
+/* ****************************************************************************/
+
+/* Constructor of the class */
 ShapeClass::ShapeClass(){
 
 	std::cout << "LineClass created" << std::endl;
 }
 
+/* Constructor 2 of the class */
 ShapeClass::ShapeClass(int newX, int newY){
 
 	Position.X = newX;
@@ -39,18 +41,16 @@ ShapeClass::ShapeClass(int newX, int newY){
 	std::cout << "LineClass created" << std::endl;
 }
 
+/* Destructor of the class */
 ShapeClass::~ShapeClass(){
 
 	std::cout << "LineClass destroyed" << std::endl;
 }
 
-void ShapeClass::setPosition(int newXPos, int newYPos) {
+/* Method to set a position */
+void ShapeClass::SetPosition(int newXPos, int newYPos) {
 	Position.X = newXPos;
 	Position.Y = newYPos;
 
 	std::cout << "LineClass destroyed" << std::endl;
 }
-
-/* ****************************************************************************/
-/* End Header : ShapeClass.cpp */
-/* ****************************************************************************/
