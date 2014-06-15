@@ -29,17 +29,14 @@
 /* Constructor of the class */
 PositionClass::PositionClass(){
 
-	std::cout << "LineClass created" << std::endl;
 }
 
-/* Destructor 2 of the class */
+/* Constructor 2 of the class */
 PositionClass::PositionClass(int newX, int newY) : X(newX), Y(newY){
 
-	std::cout << "LineClass created" << std::endl;
 }
 
 /* Destructor of the class */
 PositionClass::~PositionClass(){
 
-	std::cout << "LineClass destroyed" << std::endl;
 }

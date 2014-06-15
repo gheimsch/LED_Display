@@ -34,11 +34,9 @@ MatrixClass::MatrixClass(int newWidth, int newHeight)
 	Height = newHeight;
 	PrinterClass printer(Width,Height,Array.GetPtr());
 
-	std::cout << "LineClass created" << std::endl;
 }
 
 /* Destructor of the class */
 MatrixClass::~MatrixClass(){
 
-	std::cout << "LineClass destroyed" << std::endl;
 }

@@ -33,13 +33,11 @@ CircleClass::CircleClass(int newX, int newY, int newRad, uint16_t newCol) : Rad(
 	Position.Y = newY;
 	Col = newCol;
 
-	std::cout << "LineClass created" << std::endl;
 }
 
 /* Destructor of the class */
 CircleClass::~CircleClass(){
 
-	std::cout << "LineClass destroyed" << std::endl;
 }
 
 /* Draw method of the class */

@@ -29,7 +29,6 @@ class PointClass : public ShapeClass{
 
    // Methods
 public:
-	//PointClass();
 	uint16_t Col;
 	PointClass(int newX, int newY, uint16_t newCol);
 	~PointClass();

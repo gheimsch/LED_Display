@@ -34,19 +34,16 @@ LEDArrayClass::LEDArrayClass(int newWidth, int newHeight) : Width(newWidth), Hei
 	ledArray = new uint16_t[(32*Width)*(32*Height)];
 	memset(ledArray,0x00,(32*Width)*(32*Height)*2);
 
-	std::cout << "LineClass created" << std::endl;
 }
 
 /* Constructor of the class */
 LEDArrayClass::LEDArrayClass(){
 
-	std::cout << "LineClass created" << std::endl;
 }
 
 /* Destructor of the class */
 LEDArrayClass::~LEDArrayClass(){
 
-	std::cout << "LineClass destroyed" << std::endl;
 }
 
 /* Method to set a "pixel" in the array */

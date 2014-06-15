@@ -31,13 +31,11 @@ RectangleClass::RectangleClass(int newX, int newY, int newWidth, int newHeight, 
 
 	Position.X = newX;
 	Position.Y = newY;
-	std::cout << "LineClass created" << std::endl;
 }
 
 /* Destructor of the class */
 RectangleClass::~RectangleClass(){
 
-	std::cout << "LineClass destroyed" << std::endl;
 }
 
 /* Draw method of the class */

@@ -39,8 +39,6 @@ ColorTableClass::ColorTableClass(){
 	colorMap["Red"] = new ColorClass(0xFF,0x00,0x00);
 	colorMap["Green"] = new ColorClass(0x00,0xFF,0x00);
 	colorMap["Blue"] = new ColorClass(0x00,0x00,0xFF);
-
-	std::cout << "Color table created" << std::endl;
 }
 
 /* Destructor of the class */
@@ -50,14 +48,12 @@ ColorTableClass::~ColorTableClass(){
 	{
 		(*mapIterator).second->~ColorClass();
 	}
-	std::cout << "Color table destroyed" << std::endl;
 }
 
 /* Helper method to write all stored colors to the terminal */
 void ColorTableClass::PrintColors(void)
 {
 	/* Print the colors in the color table */
-	std::cout << std::endl << "Colors in table:" << std::endl;
 
 	for( mapIterator = colorMap.begin(); mapIterator!=colorMap.end(); ++mapIterator)
 	{

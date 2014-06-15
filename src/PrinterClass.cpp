@@ -34,13 +34,11 @@ PrinterClass::PrinterClass(int newWidth, int newHight, uint16_t *newDataPtr){
 	DataPtr = newDataPtr;
 	initISR(Width,Hight,DataPtr);
 
-	std::cout << "LineClass created" << std::endl;
 }
 
 /* Destructor of the class */
 PrinterClass::~PrinterClass(){
 
-	std::cout << "LineClass destroyed" << std::endl;
 }
 
 /* Method to set a pointer of a LED array */

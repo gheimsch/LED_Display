@@ -31,13 +31,11 @@ TriangleClass::TriangleClass(int newX0, int newY0, int newX1, int newY1, int new
 
 	Position.X = newX0;
 	Position.Y = newY0;
-	std::cout << "LineClass created" << std::endl;
 }
 
 /* Destructor of the class */
 TriangleClass::~TriangleClass(){
 
-	std::cout << "LineClass destroyed" << std::endl;
 }
 
 /* Draw method of the class */

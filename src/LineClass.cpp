@@ -30,13 +30,11 @@ LineClass::LineClass(int newXStart, int newYStart, int newXEnd, int newYEnd, uin
 
 	Position.X = newXStart;
 	Position.Y = newYStart;
-	std::cout << "LineClass created" << std::endl;
 }
 
 /* Destructor of the class */
 LineClass::~LineClass(){
 
-	std::cout << "LineClass destroyed" << std::endl;
 }
 
 /* Draw method of the class */
@@ -95,6 +93,4 @@ void LineClass::Draw(LEDArrayClass *ledArray){
 	      }
 	      ledArray->SetPixel(x,y,Col);
 	   }
-
-
 }

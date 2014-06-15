@@ -36,7 +36,6 @@ PointClass::PointClass(int newX, int newY, uint16_t newCol) : Col(newCol){
 /* Destructor of the class */
 PointClass::~PointClass(){
 
-	std::cout << "LineClass destroyed" << std::endl;
 }
 
 /* Draw method of the class */

@@ -27,7 +27,6 @@
 class MatrixClass {
 
 	friend class ShapeClass;
-	//friend class LEDArrayClass;
     // Data
 	int Height;
 	int Width;
@@ -37,7 +36,6 @@ public:
 
    // Methods
 public:
-	//MatrixClass();
 	LEDArrayClass Array;
 	MatrixClass(int newHeight, int newWidth);
 	~MatrixClass();

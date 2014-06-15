@@ -31,13 +31,11 @@ EllipseClass::EllipseClass(int newX, int newY, int newA, int newB, uint16_t newC
 	Position.X = newX;
 	Position.Y = newY;
 
-	std::cout << "LineClass created" << std::endl;
 }
 
 /* Destructor of the class */
 EllipseClass::~EllipseClass(){
 
-	std::cout << "LineClass destroyed" << std::endl;
 }
 
 /* Draw method of the class */

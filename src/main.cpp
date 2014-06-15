@@ -15,7 +15,7 @@
 /* ****************************************************************************/
 
 /* --------------------------------- imports ---------------------------------*/
-#include <stdint.h>
+//#include <stdint.h>
 #include "stm32f4xx.h"
 #include "GPIO.h"
 #include "stm32f4xx_TIM.h"
@@ -29,7 +29,7 @@
 #include "EllipseClass.hpp"
 #include "TriangleClass.hpp"
 #include "ColorTableClass.hpp"
-#include <math.h>
+//#include <math.h>
 /* --------------------------------- defines ---------------------------------*/
 //#define Row		1
 //#define Colum	1

@@ -37,7 +37,6 @@ ColorClass::ColorClass()
 	Red = 0;
 	Green = 0;
 	Blue = 0;
-	std::cout << "ColorClass created" << std::endl;
 }
 
 /* Constructor 2 of the class */
@@ -47,13 +46,11 @@ ColorClass::ColorClass(unsigned char newRed, unsigned char newGreen, unsigned ch
 	Green = newGreen>>3;
 	Blue = newBlue>>3;
 
-	std::cout << "ColorClass created" << std::endl;
 }
 
 /* Destructor of the class */
 ColorClass::~ColorClass(){
 
-	std::cout << "ColorClass destroyed" << std::endl;
 }
 
 /* Method to get the color value */
